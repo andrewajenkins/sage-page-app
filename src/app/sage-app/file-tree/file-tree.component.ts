@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './file-tree.component.html',
-  styleUrl: './file-tree.component.scss'
+  styleUrl: './file-tree.component.scss',
 })
-export class FileTreeComponent {
-
-}
+export class FileTreeComponent {}

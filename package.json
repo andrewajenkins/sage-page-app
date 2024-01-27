@@ -3,11 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --open --poll=2000",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:sage-page-app": "node dist/sage-page-app/server/server.mjs"
+    "serve:ssr:sage-page-app": "node dist/sage-page-app/server/server.mjs",
+    "server": "nodemon dist/sage-page-app/server/server.mjs",
+    "build:server": "tsc -p tsconfig.app.json",
+    "build:angular": "ng build",
+    "serve": "node dist/sage-page-app/server/server.mjs",
+    "dev": "nodemon --watch server.ts --exec 'npm run build:server && npm run build:angular && npm run serve'",
+    "format": "prettier --write {**/*,*}.{js,ts,html,json,scss}"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +28,7 @@
     "@angular/router": "^17.1.0",
     "@angular/ssr": "^17.1.1",
     "express": "^4.18.2",
+    "prettier": "^3.2.4",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primeng": "^17.4.0",
@@ -42,6 +49,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.3.2"
+    "nodemon": "^3.0.3",
+    "typescript": "^5.3.3"
   }
 }

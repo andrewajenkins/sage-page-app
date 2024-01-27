@@ -1,0 +1,23 @@
+h1 {
+  white-space: nowrap;
+  margin-right: 20px;
+}
+
+.header-container {
+  background-color: #00acd5;
+}
+
+.login-icon {
+  padding-right: 10px;
+}
+
+/* Add this CSS rule to your component's stylesheet or global stylesheet */
+a {
+  text-decoration: none; /* Turn off text decoration (underline) */
+}
+
+/* Add other styles for your link button */
+a:hover {
+  /* Add hover styles if needed */
+  text-decoration: none; /* Turn off text decoration on hover as well */
+}

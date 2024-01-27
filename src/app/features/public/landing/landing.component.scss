@@ -1,0 +1,62 @@
+/* Styling for the landing banner */
+.landing-banner {
+  background-color: #00acd5; /* Set your desired background color */
+  color: #fff; /* Text color */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+  text-align: center;
+  min-height: 70vh;
+}
+
+.banner-image-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styling for the banner image */
+.banner-image {
+  max-width: 20%; /* Adjust the image width as needed */
+}
+
+.banner-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Styling for the banner content */
+.banner-content {
+  flex: 1;
+  max-width: 50%; /* Adjust the content width as needed */
+  text-align: center;
+}
+
+/* Styling for the banner title */
+.banner-title {
+  font-size: 8em; /* Adjust the font size as needed */
+}
+
+/* Styling for the banner description */
+.banner-description {
+  font-size: 3em; /* Adjust the font size as needed */
+  margin-bottom: 20px; /* Adjust spacing between description and button */
+}
+
+/* Styling for the banner button */
+.banner-button {
+  font-size: 1.25rem; /* Adjust the font size as needed */
+  padding: 10px 30px; /* Adjust button padding */
+}
+
+.landing-container {
+  background-color: #00acd5; /* Set your desired background color */
+}
+
+.surface-section {
+  padding: 30px;
+}

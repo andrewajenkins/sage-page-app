@@ -8,10 +8,9 @@ describe('FileTreeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FileTreeComponent]
-    })
-    .compileComponents();
-    
+      imports: [FileTreeComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(FileTreeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
