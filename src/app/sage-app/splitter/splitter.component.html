@@ -1,0 +1,52 @@
+<div class="splitter-container">
+  <p-splitter *ngIf="showFileTree && showChat && showEditor" [style]="{ height: '100%' }" styleClass="mb-5">
+    <ng-template pTemplate>
+      <app-file-tree></app-file-tree>
+    </ng-template>
+    <ng-template pTemplate>
+      <app-chat></app-chat>
+    </ng-template>
+    <ng-template pTemplate>
+      <app-editor></app-editor>
+    </ng-template>
+  </p-splitter>
+  <p-splitter *ngIf="showFileTree && showChat && !showEditor" [style]="{ height: '100%' }" styleClass="mb-5">
+    <ng-template pTemplate>
+      <app-file-tree></app-file-tree>
+    </ng-template>
+    <ng-template pTemplate>
+      <app-chat></app-chat>
+    </ng-template>
+  </p-splitter>
+  <p-splitter *ngIf="showFileTree && !showChat && showEditor" [style]="{ height: '100%' }" styleClass="mb-5">
+    <ng-template pTemplate>
+      <app-file-tree></app-file-tree>
+    </ng-template>
+    <ng-template pTemplate>
+      <app-editor></app-editor>
+    </ng-template>
+  </p-splitter>
+  <p-splitter *ngIf="!showFileTree && showChat && showEditor" [style]="{ height: '100%' }" styleClass="mb-5">
+    <ng-template pTemplate>
+      <app-chat></app-chat>
+    </ng-template>
+    <ng-template pTemplate>
+      <app-editor></app-editor>
+    </ng-template>
+  </p-splitter>
+  <p-splitter *ngIf="!showFileTree && !showChat && showEditor" [style]="{ height: '100%' }" styleClass="mb-5">
+    <ng-template pTemplate>
+      <app-editor></app-editor>
+    </ng-template>
+  </p-splitter>
+  <p-splitter *ngIf="showFileTree && !showChat && !showEditor" [style]="{ height: '100%' }" styleClass="mb-5">
+    <ng-template pTemplate>
+      <app-file-tree></app-file-tree>
+    </ng-template>
+  </p-splitter>
+  <p-splitter *ngIf="!showFileTree && showChat && !showEditor" [style]="{ height: '100%' }">
+    <ng-template pTemplate>
+      <app-chat></app-chat>
+    </ng-template>
+  </p-splitter>
+</div>

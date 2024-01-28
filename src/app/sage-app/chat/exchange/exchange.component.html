@@ -1,0 +1,9 @@
+<div class="query font-medium text-900 mb-2">{{ exchange.query }}</div>
+<div *ngIf="!!exchange.response" class="response line-height-3 text-600">
+  {{ exchange.response }}
+</div>
+<div *ngIf="!exchange.response">
+  <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+  <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+  <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+</div>

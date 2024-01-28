@@ -1,0 +1,54 @@
+:host {
+  width: 100%;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.dropdown-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 25%; /* Adjusts the space around the dropdown */
+}
+
+.dropdown-container select {
+  width: 50%; /* Dropdown takes up 50% of its container's width */
+}
+
+.large-panel {
+  flex-grow: 1; /* Takes up the available space between dropdown and input/button */
+}
+
+.input-button-container {
+  display: flex;
+  width: 100%;
+}
+
+.input-button-container input {
+  flex-grow: 4; /* Takes up 80% of the space */
+}
+
+.input-button-container button {
+  flex-grow: 1; /* Takes up 20% of the space */
+}
+
+.input-button-container {
+  display: flex;
+  width: 100%;
+}
+
+.input-button-container textarea {
+  flex-grow: 10; /* Allow the textarea to grow to fill space */
+  resize: none; /* Optional: Disable manual resizing */
+  overflow: auto; /* Scrollbar if content exceeds max height */
+  max-height: 140px; /* Maximum height (adjust based on line height) */
+  //white-space: pre-wrap;
+}
+
+.input-button-container button {
+  /* Button styling */
+}

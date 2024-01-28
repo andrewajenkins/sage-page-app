@@ -5,6 +5,7 @@ import { RippleModule } from 'primeng/ripple';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,19 +15,22 @@ import { LoginService } from './login.service';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  user: { email: string; password: string } = { email: '', password: '' };
+  user = { email: '', password: '' };
 
-  constructor(private loginService: LoginService) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+  ) {}
 
   onFormSubmit() {
     this.loginService.login(this.user.email, this.user.password).subscribe(
       (response) => {
         console.log('Login successful', response);
-        // handle successful login
+        this.router.navigate(['/app']); // Navigate to the app
       },
       (error) => {
         console.error('Login failed', error);
-        // handle login error
+        // Handle login error
       },
     );
   }
