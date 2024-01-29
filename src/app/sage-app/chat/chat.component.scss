@@ -21,6 +21,7 @@
 
 .large-panel {
   flex-grow: 1; /* Takes up the available space between dropdown and input/button */
+  overflow-y: auto;
 }
 
 .input-button-container {

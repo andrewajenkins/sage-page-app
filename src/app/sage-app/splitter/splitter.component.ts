@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ChatComponent } from '../chat/chat.component';
 import { EditorComponent } from '../editor/editor.component';
 import { FileTreeComponent } from '../file-tree/file-tree.component';
-import {NgIf, NgTemplateOutlet} from '@angular/common';
+import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { SharedModule } from 'primeng/api';
 import { SplitterModule } from 'primeng/splitter';
 import { Subscription } from 'rxjs';
@@ -24,10 +24,10 @@ export class SplitterComponent {
 
   constructor(private eventBus: EventBusService) {
     this.eventSubscription = this.eventBus.on().subscribe((event) => {
-      console.log(`Event received by SplitterComponent, content ${JSON.stringify(event.content)}`);
-      if (event.content?.button == 'file-tree') this.showFileTree = event.content.status;
-      if (event.content?.button == 'chat') this.showChat = event.content.status;
-      if (event.content?.button == 'editor') this.showEditor = event.content.status;
+      console.log(`Event received by SplitterComponent, content ${JSON.stringify(event.value)}`);
+      if (event.value?.button == 'file-tree') this.showFileTree = event.value.status;
+      if (event.value?.button == 'chat') this.showChat = event.value.status;
+      if (event.value?.button == 'editor') this.showEditor = event.value.status;
     });
   }
 

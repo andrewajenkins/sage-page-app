@@ -1,0 +1,30 @@
+<ng-template #textTemplate let-data>
+  <!--  <div>{{ data.value }}</div>-->
+  {{ data | json }}
+</ng-template>
+
+<ng-template #headingTemplate let-data>
+  <!--  <h1>{{ data.value }}</h1>-->
+  {{ data | json }}
+</ng-template>
+
+<ng-template #listItemTemplate let-data>
+  <!--  <li>{{ data.value }}</li>-->
+  {{ data | json }}
+</ng-template>
+
+<ng-template #blankTemplate let-data>
+  <!--  <li>{{ data.value }}</li>-->
+  {{ data | json }}
+</ng-template>
+
+<ng-container [ngSwitch]="line.type">
+  <!--  {{ line | json }}-->
+  <!--  {{ line.type }}-{{ LineType.TEXT }}-->
+  <div class="line-container">
+    <p-checkbox [(ngModel)]="line.chatSelected" [inputId]="checkboxId" [binary]="true"></p-checkbox>
+    <label [for]="checkboxId" class="line-content">{{ line.value }}</label>
+    <!--    <p-menu #menu [model]="items"></p-menu>-->
+    <!--    <button type="button" pButton icon="pi pi-ellipsis-v" class="menu-button" (click)="menu.toggle($event)"></button>-->
+  </div>
+</ng-container>

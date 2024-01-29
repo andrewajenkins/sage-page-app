@@ -1,4 +1,7 @@
+import { ActionEvent } from '../../sage-app/shared/models/actionEvent';
+
 export interface EventBusEvent {
   sender: string;
-  content: any;
+  action: ActionEvent;
+  value: any;
 }

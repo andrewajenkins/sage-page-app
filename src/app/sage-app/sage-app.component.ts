@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import { EventBusService } from '../shared/services/event-bus.service';
+import {ActionEvent} from "./shared/models/actionEvent";
 
 @Component({
   selector: 'app-sage-app',
@@ -46,7 +47,8 @@ export class SageAppComponent {
     console.log('event:', key, $event);
     const event = {
       sender: 'splitter-toggle-button',
-      content: { button: key, status: $event },
+      action: ActionEvent.SPLITTER_BUTTON_TOGGLE,
+      value: { button: key, status: $event },
     };
 
     this.eventBus.emit(event);

@@ -1,9 +1,48 @@
-<div class="query font-medium text-900 mb-2">{{ exchange.query }}</div>
-<div *ngIf="!!exchange.response" class="response line-height-3 text-600">
-  {{ exchange.response }}
-</div>
-<div *ngIf="!exchange.response">
-  <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
-  <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
-  <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+<div class="surface-card shadow-2 border-round p-4">
+  <ul class="list-none p-0 m-0">
+    <li class="pb-3 border-bottom-1 surface-border">
+      <div class="query font-medium text-900 mb-2">{{ exchange.query }}</div>
+      <div *ngIf="!!exchange.response" class="response line-height-3 text-600">
+        <!--  {{ exchange.response }}-->
+        <div *ngFor="let line of exchange.lines">
+          <app-line [line]="line"></app-line>
+        </div>
+      </div>
+      <div *ngIf="!exchange.response">
+        <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+        <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+        <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+      </div>
+    </li>
+    <li class="pb-3 border-bottom-1 surface-border">
+      <div class="font-medium text-900 mb-2">Aenean euismod elementum</div>
+      <div class="line-height-3 text-600">
+        Vitae turpis massa sed elementum tempus egestas sed sed risus. In metus vulputate eu scelerisque felis imperdiet
+        proin.
+      </div>
+    </li>
+  </ul>
+  <div class="flex justify-content-between pt-3">
+    <button
+      (click)="sendToEditor()"
+      pButton
+      pRipple
+      [disabled]="!exchange.response"
+      label="Send to editor"
+      class="p-button-outlined w-6 ml-2"></button>
+    <button
+      (click)="selectAll()"
+      pButton
+      pRipple
+      [disabled]="!exchange.response"
+      label="Select all"
+      class="p-button-outlined w-6"></button>
+    <button
+      (click)="clearAll()"
+      pButton
+      pRipple
+      [disabled]="!exchange.response"
+      label="Clear All"
+      class="p-button-outlined p-button-secondary w-6 mr-2"></button>
+  </div>
 </div>

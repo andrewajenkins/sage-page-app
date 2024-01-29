@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StateManagementService {
   private componentStates = new Map<string, any>();
@@ -12,7 +12,7 @@ export class StateManagementService {
   }
 
   getState(componentKey: string): any {
-    console.log('get state:', this.componentStates)
+    console.log('get state:', this.componentStates);
     return this.componentStates.get(componentKey);
   }
 

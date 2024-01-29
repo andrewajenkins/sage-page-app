@@ -9,25 +9,7 @@
 
   <div class="large-panel">
     <div *ngFor="let exchange of exchanges">
-      <div class="surface-card shadow-2 border-round p-4">
-        <ul class="list-none p-0 m-0">
-          <li class="pb-3 border-bottom-1 surface-border">
-            <app-exchange [exchange]="exchange"></app-exchange>
-          </li>
-          <li class="pb-3 border-bottom-1 surface-border">
-            <div class="font-medium text-900 mb-2">Aenean euismod elementum</div>
-            <div class="line-height-3 text-600">
-              Vitae turpis massa sed elementum tempus egestas sed sed risus. In metus vulputate eu scelerisque felis
-              imperdiet proin.
-            </div>
-          </li>
-        </ul>
-        <div class="flex justify-content-between pt-3">
-          <button pButton pRipple [disabled]="!exchange.response" label="Send to editor" class="p-button-outlined w-6 ml-2"></button>
-          <button pButton pRipple [disabled]="!exchange.response" label="Select all" class="p-button-outlined w-6"></button>
-          <button pButton pRipple [disabled]="!exchange.response" label="Clear All" class="p-button-outlined p-button-secondary w-6 mr-2"></button>
-        </div>
-      </div>
+      <app-exchange [exchange]="exchange"></app-exchange>
     </div>
   </div>
 
