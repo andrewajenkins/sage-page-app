@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import { EventBusService } from '../shared/services/event-bus.service';
-import {ActionEvent} from "./shared/models/actionEvent";
+import { ActionEvent } from './shared/models/actionEvent';
 
 @Component({
   selector: 'app-sage-app',
@@ -35,9 +35,9 @@ import {ActionEvent} from "./shared/models/actionEvent";
   styleUrl: './sage-app.component.scss',
 })
 export class SageAppComponent {
-  showFileTree = false;
+  showFileTree = true;
   showChat = true;
-  showEditor = false;
+  showEditor = true;
   constructor(
     private eventBus: EventBusService,
     private router: Router,

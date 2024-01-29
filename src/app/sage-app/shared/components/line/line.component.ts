@@ -5,17 +5,28 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-line',
   standalone: true,
-  imports: [NgSwitch, NgTemplateOutlet, NgSwitchCase, JsonPipe, CheckboxModule, MenuModule, ButtonModule, CommonModule, FormsModule],
+  imports: [
+    NgSwitch,
+    NgTemplateOutlet,
+    NgSwitchCase,
+    JsonPipe,
+    CheckboxModule,
+    MenuModule,
+    ButtonModule,
+    CommonModule,
+    FormsModule,
+  ],
   templateUrl: './line.component.html',
   styleUrl: './line.component.scss',
 })
 export class LineComponent {
   @Input() line!: Line;
+  @Input() context!: string;
   protected readonly LineType = LineType;
 
   checkboxId = `checkbox-${Math.random()}`;

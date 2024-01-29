@@ -14,7 +14,17 @@
   </div>
 
   <div class="input-button-container">
-    <textarea #queryInput rows="1" pInputTextarea [autoResize]="true" placeholder="Message ChatGPT..."></textarea>
-    <button pButton icon="pi pi-arrow-up" (click)="onButtonClick(queryInput.value)"></button>
+    <form (ngSubmit)="onButtonClick(queryText)" style="width: 100%; display: flex">
+      <textarea
+        #queryInput
+        rows="1"
+        pInputTextarea
+        name="query"
+        (keydown)="handleTextareaKeyDown($event)"
+        [autoResize]="true"
+        [(ngModel)]="queryText"
+        placeholder="Message ChatGPT..."></textarea>
+      <button pButton icon="pi pi-arrow-up" (click)="onButtonClick(queryInput.value)"></button>
+    </form>
   </div>
 </div>

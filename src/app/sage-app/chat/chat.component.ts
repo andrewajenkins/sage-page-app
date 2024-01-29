@@ -11,10 +11,9 @@ import { NgForOf } from '@angular/common';
 import { StateManagementService } from '../../shared/services/state-management.service';
 import { parseText } from './text-parser/text-parser';
 import { Line } from '../shared/models/line';
-import { Observable } from 'rxjs';
 import { EventBusService } from '../../shared/services/event-bus.service';
 
-const testResponse = `
+const testResponse2 = `
 It seems like you're performing a test or possibly seeking information on how to write or format content. Here's an example of both an outline and a wiki article format to help you understand how you could present information in either style. I'll use a generic topic, "Renewable Energy", for demonstration purposes.
 
 ---
@@ -61,7 +60,9 @@ VI. Conclusion
    B. Call to Action
 
 ---
+`;
 
+const testResponse = `
 **Wiki Article Format Example:**
 
 # Renewable Energy
@@ -136,6 +137,7 @@ export class ChatComponent {
   chatModels = ['GPT3', 'GPT4'];
   selectedModel = 'GPT4';
   exchanges!: Exchange[];
+  queryText!: string;
 
   constructor(
     private chatService: ChatService,
@@ -147,15 +149,17 @@ export class ChatComponent {
 
   onButtonClick(query: string) {
     console.log('button clicked');
+
+    if (query == 'test') {
+      return this.handleTestResponse(query);
+    }
+
     this.exchanges.push({
       query: query,
       response: null,
       lines: null,
     });
 
-    if (query == 'test') {
-      return this.handleTestResponse(query);
-    }
     this.chatService.sendQuary(query).subscribe(
       (response) => {
         this.handleResponse(query, response);
@@ -188,5 +192,13 @@ export class ChatComponent {
         },
       ],
     });
+  }
+
+  handleTextareaKeyDown($event: KeyboardEvent) {
+    if ($event && $event.key === 'Enter' && !$event.shiftKey) {
+      $event.preventDefault();
+      this.onButtonClick(this.queryText);
+      this.queryText = '';
+    }
   }
 }

@@ -1,0 +1,21 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+    <button pButton icon="pi pi-plus" class="mr-2"></button>
+    <button pButton icon="pi pi-print" class="mr-2"></button>
+    <button pButton icon="pi pi-upload"></button>
+  </div>
+  <div class="p-toolbar-group-center">
+    <button pButton type="button" class="mr-2" (click)="selectAll()" pTooltip="Select all">
+      <span class="material-symbols-outlined">select_all</span>
+    </button>
+    <button pButton type="button" class="mr-2" (click)="clearAll()" pTooltip="Clear all">
+      <span class="material-symbols-outlined"> clear_all </span>
+    </button>
+    <button pButton type="button" class="mr-2" (click)="generate()" pTooltip="Clear all">
+      <span class="material-symbols-outlined"> manufacturing </span>
+    </button>
+  </div>
+  <div class="p-toolbar-group-end">
+    <p-splitButton label="Save" icon="pi pi-check" [model]="items"></p-splitButton>
+  </div>
+</p-toolbar>

@@ -22,8 +22,12 @@
   <!--  {{ line | json }}-->
   <!--  {{ line.type }}-{{ LineType.TEXT }}-->
   <div class="line-container">
-    <p-checkbox [(ngModel)]="line.chatSelected" [inputId]="checkboxId" [binary]="true"></p-checkbox>
-    <label [for]="checkboxId" class="line-content">{{ line.value }}</label>
+    <p-checkbox
+      [(ngModel)]="context == 'chat' ? line.chatSelected : line.editorSelected"
+      [inputId]="checkboxId"
+      [binary]="true"></p-checkbox>
+    <span class="material-symbols-outlined"> {{ line.type }} </span>
+    <label class="line-content">{{ line.rawValue }}</label>
     <!--    <p-menu #menu [model]="items"></p-menu>-->
     <!--    <button type="button" pButton icon="pi pi-ellipsis-v" class="menu-button" (click)="menu.toggle($event)"></button>-->
   </div>

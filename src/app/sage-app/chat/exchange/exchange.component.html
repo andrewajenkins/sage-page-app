@@ -5,20 +5,13 @@
       <div *ngIf="!!exchange.response" class="response line-height-3 text-600">
         <!--  {{ exchange.response }}-->
         <div *ngFor="let line of exchange.lines">
-          <app-line [line]="line"></app-line>
+          <app-line [line]="line" context="chat"></app-line>
         </div>
       </div>
       <div *ngIf="!exchange.response">
         <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
         <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
         <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
-      </div>
-    </li>
-    <li class="pb-3 border-bottom-1 surface-border">
-      <div class="font-medium text-900 mb-2">Aenean euismod elementum</div>
-      <div class="line-height-3 text-600">
-        Vitae turpis massa sed elementum tempus egestas sed sed risus. In metus vulputate eu scelerisque felis imperdiet
-        proin.
       </div>
     </li>
   </ul>

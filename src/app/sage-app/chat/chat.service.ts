@@ -25,29 +25,12 @@ export class ChatService {
           content: 'You are a wiki writer. Please respond either in outline or wiki article format style',
         },
         {
+          role: 'system',
+          content: 'Always and only respond in markdown format.',
+        },
+        {
           role: 'user',
           content: query,
-        },
-      ],
-    };
-
-    return this.http.post(this.apiUrl, requestBody, { headers: this.headers });
-  }
-
-  getPoemAboutRecursion(): Observable<any> {
-    console.log('get poem');
-
-    const requestBody = {
-      model: 'gpt-4-0125-preview',
-      messages: [
-        {
-          role: 'system',
-          content:
-            'You are a poetic assistant, skilled in explaining complex programming concepts with creative flair.',
-        },
-        {
-          role: 'user',
-          content: 'Compose a poem that explains the concept of recursion in programming.',
         },
       ],
     };

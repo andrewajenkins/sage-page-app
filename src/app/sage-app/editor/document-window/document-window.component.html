@@ -1,0 +1,5 @@
+<div *ngFor="let contentSection of contentSections">
+  <div *ngFor="let line of contentSection.contents">
+    <app-line [line]="line" context="editor"></app-line>
+  </div>
+</div>
