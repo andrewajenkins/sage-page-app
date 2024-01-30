@@ -1,3 +1,5 @@
-<div *ngFor="let line of contents">
-  <app-line [line]="line" context="editor"></app-line>
+<div class="document-window-container">
+  <div *ngFor="let line of contents">
+    <app-line [line]="line" context="editor"></app-line>
+  </div>
 </div>

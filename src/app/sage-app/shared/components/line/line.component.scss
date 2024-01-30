@@ -17,8 +17,11 @@
   display: none;
 }
 
-.line-container:hover, .line-container.selected:hover {
-  background-color: #dcdcdc; /* Light gray background on hover */
+.line-container:hover {
+  background-color: #dcdcdc;
+}
+.line-container.selected:hover {
+  background-color: #c7c7c7; /* Light gray background on hover */
 }
 
 .line-container:hover .menu-button {
@@ -60,12 +63,12 @@
 }
 
 .format_h5 {
-  font-size: .75rem;
+  font-size: 0.75rem;
   font-weight: bold;
 }
 
 .format_h6 {
-  font-size: .5rem;
+  font-size: 0.5rem;
   font-weight: bold;
 }
 

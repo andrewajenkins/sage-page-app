@@ -56,10 +56,10 @@ export class LineComponent {
   }
 
   replaceWithBullets(text: string) {
-    return text.replace(/^-\s(.*?)$/, '<ul><li>$1</li></ul>')
+    return text.replace(/^-\s(.*?)$/, '<ul><li>$1</li></ul>');
   }
 
   replaceWithNumbering(text: string) {
-     return /^\d+\.\s/.test(text) ? `<div [style]="padding-left: 30px;">${text}</div>` : text;
+    return /^\d+\.\s/.test(text) ? `<div [style]="padding-left: 30px;">${text}</div>` : text;
   }
 }

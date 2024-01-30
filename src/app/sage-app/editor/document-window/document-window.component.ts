@@ -55,11 +55,13 @@ export class DocumentWindowComponent {
   }
 
   preOrderTraversal(rootNodes: TreeNode[]): Line[] {
+    console.log('traversal:', rootNodes);
     if (!rootNodes?.length) return [];
     let result: Line[] = [];
 
     function traverse(node: any) {
-      result.push(node.line);
+      console.log('traversing:', node);
+      result.push(node.data);
 
       if (node.children && node.children.length > 0) {
         node.children.forEach((child: any) => traverse(child));

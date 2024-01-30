@@ -1,5 +1,5 @@
 <ng-container [ngSwitch]="line.type">
   <div class="line-container" [class.selected]="getSelected()" (click)="toggleSelected()">
-    <label class="line-content {{line.type}}" [innerHTML]="render(line.value)"></label>
+    <label class="line-content {{ line.type }}" [innerHTML]="render(line.value)"></label>
   </div>
 </ng-container>

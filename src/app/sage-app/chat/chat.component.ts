@@ -155,7 +155,7 @@ While the benefits are vast, integrating generative AI into knowledge management
 ## Conclusion
 
 Generative AI heralds a new era in knowledge management, offering tools and methodologies to enhance efficiency, improve accessibility, and foster innovation. By intelligently automating repetitive tasks, personalizing learning and development, and enabling more effective knowledge sharing, this technology paves the way for organizations to achieve a competitive advantage in the knowledge economy. However, its successful implementation will require careful planning, ethical considerations, and a clear strategy to integrate human and artificial intelligence collaboratively in the knowledge management process.
-`
+`;
 
 export interface Exchange {
   query: string;

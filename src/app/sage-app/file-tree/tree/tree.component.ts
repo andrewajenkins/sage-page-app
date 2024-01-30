@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TreeModule } from 'primeng/tree';
 import { TreeNode } from 'primeng/api';
 import { EventBusService } from '../../../shared/services/event-bus.service';
 import { ActionEvent } from '../../shared/models/actionEvent';
 import { Line } from '../../shared/models/line';
 import { StateManagementService } from '../../../shared/services/state-management.service';
+import cloneDeep from 'lodash/cloneDeep';
 
 @Component({
   selector: 'app-tree',
@@ -13,21 +14,24 @@ import { StateManagementService } from '../../../shared/services/state-managemen
   templateUrl: './tree.component.html',
   styleUrl: './tree.component.scss',
 })
-export class TreeComponent implements OnInit {
+export class TreeComponent {
   data!: TreeNode[];
-  cols!: any[];
   lastEvent!: any;
+  filteredData!: TreeNode[];
 
   constructor(
     private state: StateManagementService,
     private eventBus: EventBusService,
   ) {
     this.data = this.state.getState('file-tree') || this.testData;
+    this.filteredData = this.filter(cloneDeep(this.data));
     this.eventBus.on().subscribe((event) => {
       if (event.action == ActionEvent.FILE_TREE_ADD_DOCUMENT) {
         console.log('Received event, FileTree:', JSON.stringify(event));
         if (this.lastEvent && this.lastEvent.node.icon.includes('folder')) {
-          this.lastEvent.node.children.push({
+          const fullNode = this.findNodeInTree(this.data, this.lastEvent.node.key);
+          fullNode!.children!.push({
+            key: this.getID(),
             label: 'New document',
             parent: this.lastEvent.node.parent,
             icon: 'pi pi-book',
@@ -38,7 +42,9 @@ export class TreeComponent implements OnInit {
       } else if (event.action == ActionEvent.FILE_TREE_ADD_FOLDER) {
         console.log('Received event, FileTree:', JSON.stringify(event));
         if (this.lastEvent && this.lastEvent.node.icon.includes('folder')) {
-          this.lastEvent.node.children.push({
+          const fullNode = this.findNodeInTree(this.data, this.lastEvent.node.key);
+         fullNode!.children!.push({
+            key: this.getID(),
             label: 'New folder',
             parent: this.lastEvent.node.parent,
             icon: 'pi pi-folder',
@@ -51,29 +57,64 @@ export class TreeComponent implements OnInit {
         if (this.lastEvent && this.lastEvent.node.icon.includes('book')) {
           const subTrees = this.buildSubTree(event.value as Line[]);
           if (this.lastEvent) {
-            for (let subTree of subTrees) this.lastEvent.node.children.push(subTree);
+            const fullNode = this.findNodeInTree(this.data, this.lastEvent.node.key);
+            console.log('lastEvent', this.lastEvent, fullNode, this.data);
+            for (let subTree of subTrees) fullNode!.children!.push(subTree);
           } else {
+            console.log('not lastEvent');
             for (let subTree of subTrees) this.data[0].children!.push(subTree);
           }
+          // this.filteredData = this.filter(cloneDeep(this.data));
         } else {
           alert('Please select a wiki to generate');
         }
       }
       this.state.saveState('file-tree', this.data);
+      this.filteredData = this.filter(cloneDeep(this.data));
+    });
+  }
+  filter(nodes: TreeNode[]): TreeNode[] {
+    const typesToFilter = ['ol', 'ul', 'text_fields'];
+    return nodes.filter((node) => {
+      if (typesToFilter.includes(node.data?.type || 'fail')) {
+        return false;
+      }
+
+      // If the node has children, recursively filter the children
+      if (node.children && node.children.length > 0) {
+        node.children = this.filter(node.children);
+      }
+
+      return true;
     });
   }
 
-  ngOnInit() {}
+  findNodeInTree(tree: TreeNode[], idToFind: string): TreeNode | null {
+    for (const node of tree) {
+      console.log('key:', node.key, 'node:', node);
+      if (node.key === idToFind) {
+        return node; // Found the node
+      } else if (node.children && node.children.length > 0) {
+        const foundChild = this.findNodeInTree(node.children, idToFind);
+        if (foundChild) return foundChild; // Found the node in children
+      }
+    }
+    return null;
+  }
 
   handleClick(event: any) {
     console.log('tree-event:', event);
     this.lastEvent = event;
     if (!event.node.icon.includes('folder') && this.state.getState('editorMode') == 'editor') {
-      this.eventBus.emit({
-        sender: 'Tree',
-        action: ActionEvent.LOAD_EDITOR_CONTENT,
-        value: this.lastEvent.node.children,
-      });
+      const correspondingNode = this.findNodeInTree(this.data, this.lastEvent.node.key) as TreeNode;
+      console.log('foundNode:', correspondingNode);
+      if (correspondingNode?.children) {
+        this.eventBus.emit({
+          sender: 'Tree',
+          action: ActionEvent.LOAD_EDITOR_CONTENT,
+          value: correspondingNode.children,
+        });
+      }
     }
   }
 
@@ -91,7 +132,8 @@ export class TreeComponent implements OnInit {
         if (depth == 1) {
           console.log('ADDING heading to roots');
           const newNode = {
-            line: line,
+            key: this.getID(),
+            data: line,
             label: line.pValue,
             parent: undefined,
             icon: 'pi pi-align-justify',
@@ -105,7 +147,8 @@ export class TreeComponent implements OnInit {
           queuePointer = depth - 1;
           const parent = queue[queuePointer - 1];
           const newNode = {
-            line: line,
+            key: this.getID(),
+            data: line,
             label: line.pValue,
             parent: parent,
             icon: 'pi pi-align-justify',
@@ -116,7 +159,8 @@ export class TreeComponent implements OnInit {
         }
       } else {
         const newNode = {
-          line: line,
+          key: this.getID(),
+          data: line,
           label: line.pValue,
           parent: undefined,
           icon: 'pi pi-align-justify',
@@ -133,40 +177,22 @@ export class TreeComponent implements OnInit {
     return roots;
   }
 
-  testCols = [
-    { field: 'name', header: 'First Name' },
-    { field: 'age', header: 'Age' },
-  ];
-
   testData = [
     {
+      key: this.getID(),
       label: 'Wikis',
       icon: 'pi pi-folder',
       expanded: true,
-      children: [
-        {
-          label: 'List',
-          icon: 'pi pi-folder',
-
-          children: [
-            {
-              label: 'History of philosophy',
-              icon: 'pi pi-book',
-              children: [],
-            },
-            {
-              label: 'Causes of WW2',
-              icon: 'pi pi-book',
-              children: [],
-            },
-          ],
-        },
-        {
-          label: 'Test wiki',
-          icon: 'pi pi-book',
-          children: [],
-        },
-      ],
+      children: [],
     },
   ];
+
+  getID(length = 6) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  }
 }
