@@ -27,9 +27,9 @@ export class SplitterComponent implements OnDestroy {
     this.eventSubscription = this.eventBus.on().subscribe((event) => {
       if (event.action === ActionEvent.SPLITTER_BUTTON_TOGGLE) {
         console.log(`Event received by SplitterComponent, content ${JSON.stringify(event.value)}`);
-        if (event.value?.button == 'file-tree') this.showFileTree = event.value.status;
-        if (event.value?.button == 'chat') this.showChat = event.value.status;
-        if (event.value?.button == 'editor') this.showEditor = event.value.status;
+        this.showFileTree = event.value.includes('file-tree');
+        this.showChat = event.value.includes('chat');
+        this.showEditor = event.value.includes('editor');
       }
     });
   }

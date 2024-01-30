@@ -5,6 +5,7 @@ import { ActionEvent } from '../../shared/models/actionEvent';
 import { LineComponent } from '../../shared/components/line/line.component';
 import { NgForOf } from '@angular/common';
 import { StateManagementService } from '../../../shared/services/state-management.service';
+import { TreeNode } from 'primeng/api';
 
 export interface ContentSection {
   contents: Line[];
@@ -18,40 +19,54 @@ export interface ContentSection {
   styleUrl: './document-window.component.scss',
 })
 export class DocumentWindowComponent {
-  contentSections: ContentSection[] = [];
+  contents: Line[];
 
   constructor(
     private eventBus: EventBusService,
     private state: StateManagementService,
   ) {
-    this.contentSections = this.state.getState('editorContents') || [];
+    this.contents = this.state.getState('editorContents') || [];
     this.eventBus.on().subscribe((message) => {
       if (message.action == ActionEvent.SEND_LINES_TO_EDITOR) {
         console.log('Event received by DocumentWindowComponent:', JSON.stringify(message));
         message.value.forEach((line: any) => (line.chatSelected = false));
-        this.contentSections.push({
-          contents: message.value as Line[],
-        } as ContentSection);
-        this.state.saveState('editorContents', this.contentSections);
+        for (let line of message.value) this.contents.push(line);
+        this.state.saveState('editorContents', this.contents);
       } else if (message.action == ActionEvent.EDITOR_SELECT_ALL) {
         console.log('Event received by DocumentWindow:', JSON.stringify(message));
-        for (let section of this.contentSections) for (let line of section.contents) line.editorSelected = true;
-        this.state.saveState('editorContents', this.contentSections);
+        for (let line of this.contents) line.editorSelected = true;
+        this.state.saveState('editorContents', this.contents);
       } else if (message.action == ActionEvent.EDITOR_CLEAR_ALL) {
         console.log('Event received by DocumentWindow:', JSON.stringify(message));
-        for (let section of this.contentSections) for (let line of section.contents) line.editorSelected = false;
-        this.state.saveState('editorContents', this.contentSections);
+        for (let line of this.contents) line.editorSelected = false;
+        this.state.saveState('editorContents', this.contents);
       } else if (message.action == ActionEvent.EDITOR_GENERATE) {
         console.log('Event received by DocumentWindow:', JSON.stringify(message));
-        const genConten = {
-          contentSections: [{ contents: this.contentSections[0]!.contents.filter((line) => line.editorSelected) }],
-        };
+        const genContent = this.contents.filter((line) => line.editorSelected);
         this.eventBus.emit({
           sender: 'DocumentWindow',
           action: ActionEvent.GENERATE_FILE_TREE,
-          value: this.contentSections,
+          value: genContent,
         });
+      } else if (message.action == ActionEvent.LOAD_EDITOR_CONTENT) {
+        this.contents = this.preOrderTraversal(message.value);
       }
     });
+  }
+
+  preOrderTraversal(rootNodes: TreeNode[]): Line[] {
+    if (!rootNodes.length) return [];
+    let result: Line[] = [];
+
+    function traverse(node: any) {
+      result.push(node.line);
+
+      if (node.children && node.children.length > 0) {
+        node.children.forEach((child: any) => traverse(child));
+      }
+    }
+
+    rootNodes.forEach((node: any) => traverse(node));
+    return result;
   }
 }

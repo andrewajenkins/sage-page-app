@@ -4,6 +4,7 @@ import { TreeNode } from 'primeng/api';
 import { EventBusService } from '../../../shared/services/event-bus.service';
 import { ActionEvent } from '../../shared/models/actionEvent';
 import { Line } from '../../shared/models/line';
+import { StateManagementService } from '../../../shared/services/state-management.service';
 
 @Component({
   selector: 'app-tree',
@@ -17,7 +18,11 @@ export class TreeComponent implements OnInit {
   cols!: any[];
   lastEvent!: any;
 
-  constructor(private eventBus: EventBusService) {
+  constructor(
+    private state: StateManagementService,
+    private eventBus: EventBusService,
+  ) {
+    this.data = this.state.getState('file-tree') || this.testData;
     this.eventBus.on().subscribe((event) => {
       if (event.action == ActionEvent.FILE_TREE_ADD_DOCUMENT) {
         console.log('Received event, FileTree:', JSON.stringify(event));
@@ -44,7 +49,7 @@ export class TreeComponent implements OnInit {
       } else if (event.action == ActionEvent.GENERATE_FILE_TREE) {
         console.log('Received event, FileTree:', event);
         if (this.lastEvent && this.lastEvent.node.icon.includes('book')) {
-          const subTrees = this.buildSubTree(event.value[0].contents as Line[]);
+          const subTrees = this.buildSubTree(event.value as Line[]);
           if (this.lastEvent) {
             for (let subTree of subTrees) this.lastEvent.node.children.push(subTree);
           } else {
@@ -54,50 +59,22 @@ export class TreeComponent implements OnInit {
           alert('Please select a wiki to generate');
         }
       }
+      this.state.saveState('file-tree', this.data);
     });
   }
 
-  ngOnInit() {
-    this.cols = [
-      { field: 'name', header: 'First Name' },
-      { field: 'age', header: 'Age' },
-    ];
-    this.data = [
-      {
-        label: 'Wikis',
-        icon: 'pi pi-folder',
-        expanded: true,
-        children: [
-          {
-            label: 'List',
-            icon: 'pi pi-folder',
-
-            children: [
-              {
-                label: 'History of philosophy',
-                icon: 'pi pi-book',
-                children: [],
-              },
-              {
-                label: 'Causes of WW2',
-                icon: 'pi pi-book',
-                children: [],
-              },
-            ],
-          },
-          {
-            label: 'Test wiki',
-            icon: 'pi pi-book',
-            children: [],
-          },
-        ],
-      },
-    ];
-  }
+  ngOnInit() {}
 
   handleClick(event: any) {
     console.log('tree-event:', event);
     this.lastEvent = event;
+    if (!event.node.icon.includes('folder')) {
+      this.eventBus.emit({
+        sender: 'Tree',
+        action: ActionEvent.LOAD_EDITOR_CONTENT,
+        value: this.lastEvent.node.children,
+      });
+    }
   }
 
   buildSubTree(lines: Line[]) {
@@ -108,7 +85,7 @@ export class TreeComponent implements OnInit {
       console.log('queuePointer:', queuePointer);
       console.log('queue:', queue);
       console.log('roots:', roots);
-      console.log("line:", line.rawValue);
+      console.log('line:', line.rawValue);
       if (line.type.startsWith('format_h')) {
         const depth = parseInt(line.type.match(/\d+/)![0]);
         if (depth == 1) {
@@ -126,7 +103,7 @@ export class TreeComponent implements OnInit {
         } else {
           console.log('ADDING heading to', depth);
           queuePointer = depth - 1;
-          const parent = queue[queuePointer-1];
+          const parent = queue[queuePointer - 1];
           const newNode = {
             line: line,
             label: line.pValue,
@@ -152,8 +129,44 @@ export class TreeComponent implements OnInit {
           queue[queuePointer].children!.push(newNode);
         }
       }
-
     }
     return roots;
   }
+
+  testCols = [
+    { field: 'name', header: 'First Name' },
+    { field: 'age', header: 'Age' },
+  ];
+
+  testData = [
+    {
+      label: 'Wikis',
+      icon: 'pi pi-folder',
+      expanded: true,
+      children: [
+        {
+          label: 'List',
+          icon: 'pi pi-folder',
+
+          children: [
+            {
+              label: 'History of philosophy',
+              icon: 'pi pi-book',
+              children: [],
+            },
+            {
+              label: 'Causes of WW2',
+              icon: 'pi pi-book',
+              children: [],
+            },
+          ],
+        },
+        {
+          label: 'Test wiki',
+          icon: 'pi pi-book',
+          children: [],
+        },
+      ],
+    },
+  ];
 }

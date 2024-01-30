@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
 import { EventBusService } from '../shared/services/event-bus.service';
 import { ActionEvent } from './shared/models/actionEvent';
+import {SelectButtonModule} from "primeng/selectbutton";
 
 @Component({
   selector: 'app-sage-app',
@@ -30,14 +31,20 @@ import { ActionEvent } from './shared/models/actionEvent';
     FormsModule,
     CommonModule,
     RouterOutlet,
+    SelectButtonModule,
   ],
   templateUrl: './sage-app.component.html',
   styleUrl: './sage-app.component.scss',
 })
 export class SageAppComponent {
-  showFileTree = true;
-  showChat = true;
-  showEditor = true;
+  gfg = [
+      { label: "File-tree", value: "file-tree"},
+      { label: "Chat", value: "chat" },
+      { label: "Editor", value: "editor" },
+    ];
+  splitterSelection: any = [
+    'file-tree', 'chat', 'editor'
+  ];
   constructor(
     private eventBus: EventBusService,
     private router: Router,
@@ -54,7 +61,18 @@ export class SageAppComponent {
     this.eventBus.emit(event);
   }
 
+
+
   routeTo(route: string) {
     this.router.navigate([route]);
+  }
+
+  setOptions(event: any) {
+    console.log("splitterSelection", event, this.splitterSelection);
+     this.eventBus.emit({
+      sender: 'splitter-toggle-button',
+      action: ActionEvent.SPLITTER_BUTTON_TOGGLE,
+      value: this.splitterSelection,
+    });
   }
 }

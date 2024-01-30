@@ -1,8 +1,6 @@
 <p-toolbar>
   <div class="p-toolbar-group-start">
-    <button pButton icon="pi pi-plus" class="mr-2"></button>
-    <button pButton icon="pi pi-print" class="mr-2"></button>
-    <button pButton icon="pi pi-upload"></button>
+    <p-selectButton [options]="gfg" [(ngModel)]="value"></p-selectButton>
   </div>
   <div class="p-toolbar-group-center">
     <button pButton type="button" class="mr-2" (click)="selectAll()" pTooltip="Select all">
@@ -16,6 +14,6 @@
     </button>
   </div>
   <div class="p-toolbar-group-end">
-    <p-splitButton label="Save" icon="pi pi-check" [model]="items"></p-splitButton>
+<!--    <p-selectButton [options]="gfg" [(ngModel)]="value"></p-selectButton>-->
   </div>
 </p-toolbar>
