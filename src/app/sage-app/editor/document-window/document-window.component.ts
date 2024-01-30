@@ -43,6 +43,9 @@ export class DocumentWindowComponent {
         this.state.saveState('editorContents', this.contentSections);
       } else if (message.action == ActionEvent.EDITOR_GENERATE) {
         console.log('Event received by DocumentWindow:', JSON.stringify(message));
+        const genConten = {
+          contentSections: [{ contents: this.contentSections[0]!.contents.filter((line) => line.editorSelected) }],
+        };
         this.eventBus.emit({
           sender: 'DocumentWindow',
           action: ActionEvent.GENERATE_FILE_TREE,

@@ -31,5 +31,5 @@ export function parseText(text: string): Line[] {
       // Default to paragraph
       return new Line(LineType.TEXT, line, line, line);
     }
-  });
+  }).filter((line) => line.type != LineType.BLANK);
 }
