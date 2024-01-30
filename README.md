@@ -1,6 +1,6 @@
 # SagePageApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.
+Sage Page is a dynamic tool that integrates with the ChatGPT API to facilitate the creation and management of wikis in markdown format. It features a chat window for interaction, an editor window for direct markdown editing, and a file-tree window that visualizes the markdown documents in a hierarchical tree structure. Users can interact with ChatGPT to generate content, edit subsections, and seamlessly convert chat responses into organized markdown documents or subsections within the tree.
 
 ## Development server
 
@@ -30,3 +30,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Document
 ### ContentSection
 - Content
+1. test

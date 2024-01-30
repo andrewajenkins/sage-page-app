@@ -1,19 +1,37 @@
 <p-toolbar>
   <div class="p-toolbar-group-start">
-    <p-selectButton [options]="gfg" [(ngModel)]="value"></p-selectButton>
+    <p-selectButton [options]="gfg" [(ngModel)]="editorMode" (onOptionClick)="updateEditorMode()"></p-selectButton>
   </div>
   <div class="p-toolbar-group-center">
-    <button pButton type="button" class="mr-2" (click)="selectAll()" pTooltip="Select all">
+    <button
+      pButton
+      type="button"
+      class="mr-2"
+      [disabled]="editorMode == 'editor'"
+      (click)="selectAll()"
+      pTooltip="Select all">
       <span class="material-symbols-outlined">select_all</span>
     </button>
-    <button pButton type="button" class="mr-2" (click)="clearAll()" pTooltip="Clear all">
+    <button
+      pButton
+      type="button"
+      class="mr-2"
+      [disabled]="editorMode == 'editor'"
+      (click)="clearAll()"
+      pTooltip="Clear all">
       <span class="material-symbols-outlined"> clear_all </span>
     </button>
-    <button pButton type="button" class="mr-2" (click)="generate()" pTooltip="Clear all">
+    <button
+      pButton
+      type="button"
+      class="mr-2"
+      [disabled]="editorMode == 'editor'"
+      (click)="generate()"
+      pTooltip="Generate">
       <span class="material-symbols-outlined"> manufacturing </span>
     </button>
   </div>
   <div class="p-toolbar-group-end">
-<!--    <p-selectButton [options]="gfg" [(ngModel)]="value"></p-selectButton>-->
+    <!--    <p-selectButton [options]="gfg" [(ngModel)]="value"></p-selectButton>-->
   </div>
 </p-toolbar>

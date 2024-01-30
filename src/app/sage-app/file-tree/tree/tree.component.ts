@@ -68,7 +68,7 @@ export class TreeComponent implements OnInit {
   handleClick(event: any) {
     console.log('tree-event:', event);
     this.lastEvent = event;
-    if (!event.node.icon.includes('folder')) {
+    if (!event.node.icon.includes('folder') && this.state.getState('editorMode') == 'editor') {
       this.eventBus.emit({
         sender: 'Tree',
         action: ActionEvent.LOAD_EDITOR_CONTENT,

@@ -55,7 +55,7 @@ export class DocumentWindowComponent {
   }
 
   preOrderTraversal(rootNodes: TreeNode[]): Line[] {
-    if (!rootNodes.length) return [];
+    if (!rootNodes?.length) return [];
     let result: Line[] = [];
 
     function traverse(node: any) {

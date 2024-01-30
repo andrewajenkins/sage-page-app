@@ -5,8 +5,8 @@ export enum LineType {
   HEADING4 = 'format_h4',
   HEADING5 = 'format_h5',
   HEADING6 = 'format_h6',
-  ORDERED_LIST_ITEM = '123',
-  UNORDERED_LIST_ITEM = '*',
+  ORDERED_LIST_ITEM = 'ol',
+  UNORDERED_LIST_ITEM = 'ul',
   TEXT = 'text_fields',
   BLANK = '_',
 }

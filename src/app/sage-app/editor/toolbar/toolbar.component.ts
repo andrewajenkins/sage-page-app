@@ -6,22 +6,36 @@ import { EventBusService } from '../../../shared/services/event-bus.service';
 import { ActionEvent } from '../../shared/models/actionEvent';
 import { TooltipModule } from 'primeng/tooltip';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StateManagementService } from '../../../shared/services/state-management.service';
 
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [ToolbarModule, ButtonModule, InputTextModule, TooltipModule, SelectButtonModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    ToolbarModule,
+    ButtonModule,
+    InputTextModule,
+    TooltipModule,
+    SelectButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent {
-  value: any = "editor";
+  editorMode: any = 'editor';
   gfg = [
-      { label: "Editor", value: "editor" },
-      { label: "Generator", value: "generator" }
-    ];
-  constructor(private eventBus: EventBusService) {}
+    { label: 'Editor', value: 'editor' },
+    { label: 'Generator', value: 'generator' },
+  ];
+  constructor(
+    private state: StateManagementService,
+    private eventBus: EventBusService,
+  ) {
+    this.updateEditorMode();
+  }
 
   selectAll() {
     this.eventBus.emit({
@@ -42,5 +56,9 @@ export class ToolbarComponent {
       sender: 'EditorToolbar',
       action: ActionEvent.EDITOR_GENERATE,
     });
+  }
+
+  updateEditorMode() {
+    this.state.saveState('editorMode', this.editorMode);
   }
 }
