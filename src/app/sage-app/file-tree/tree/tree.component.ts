@@ -18,6 +18,7 @@ export class TreeComponent {
   data!: TreeNode[];
   lastEvent!: any;
   filteredData!: TreeNode[];
+  selectedNode: TreeNode | null = null;
 
   constructor(
     private state: StateManagementService,
@@ -43,7 +44,7 @@ export class TreeComponent {
         console.log('Received event, FileTree:', JSON.stringify(event));
         if (this.lastEvent && this.lastEvent.node.icon.includes('folder')) {
           const fullNode = this.findNodeInTree(this.data, this.lastEvent.node.key);
-         fullNode!.children!.push({
+          fullNode!.children!.push({
             key: this.getID(),
             label: 'New folder',
             parent: this.lastEvent.node.parent,
@@ -103,7 +104,12 @@ export class TreeComponent {
   }
 
   handleClick(event: any) {
-    console.log('tree-event:', event);
+    console.log('tree-event:', event, this.selectedNode);
+    if (this.selectedNode?.key !== event.node.key) {
+      this.selectedNode = event.node;
+      // event.node.selectable = false;
+      console.log('set:', event, this.selectedNode);
+    }
     this.lastEvent = event;
     if (!event.node.icon.includes('folder') && this.state.getState('editorMode') == 'editor') {
       const correspondingNode = this.findNodeInTree(this.data, this.lastEvent.node.key) as TreeNode;
@@ -115,6 +121,18 @@ export class TreeComponent {
           value: correspondingNode.children,
         });
       }
+    }
+  }
+
+  doNothing(event: any) {
+    if (this.selectedNode?.key !== event.node.key) {
+      console.log('do nothing setting node');
+      this.selectedNode = event.node;
+      // event.node.selectable = false;
+      console.log('set:', event, this.selectedNode);
+    } else {
+      console.log('do nothing - nothing', this.selectedNode?.key, event.node.key);
+      this.selectedNode = event.node;
     }
   }
 

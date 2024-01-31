@@ -8,16 +8,11 @@ export class StateManagementService {
 
   saveState(componentKey: string, state: any) {
     this.componentStates.set(componentKey, state);
-    console.log('set state:', this.componentStates);
+    console.log('set state:', componentKey, this.componentStates);
   }
 
   getState(componentKey: string): any {
-    console.log('get state:', this.componentStates);
+    console.log('get state:', componentKey, this.componentStates);
     return this.componentStates.get(componentKey);
-  }
-
-  // Optionally, a method to clear state
-  clearState(componentKey: string) {
-    this.componentStates.delete(componentKey);
   }
 }

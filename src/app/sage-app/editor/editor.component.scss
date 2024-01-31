@@ -8,3 +8,8 @@
   height: 100%;
   width: 100%;
 }
+
+app-document-window {
+  flex-grow: 1;
+  overflow-y: auto;
+}

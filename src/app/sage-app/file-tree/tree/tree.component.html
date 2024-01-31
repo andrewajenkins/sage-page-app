@@ -1,1 +1,7 @@
-<p-tree [value]="filteredData" selectionMode="single" (onNodeSelect)="handleClick($event)"> </p-tree>
+<p-tree
+  [value]="filteredData"
+  selectionMode="single"
+  [selection]="selectedNode"
+  (onNodeUnselect)="doNothing($event)"
+  (onNodeSelect)="handleClick($event)">
+</p-tree>

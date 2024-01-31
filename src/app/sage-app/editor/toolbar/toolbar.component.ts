@@ -52,6 +52,7 @@ export class ToolbarComponent {
   }
 
   generate() {
+    console.log("generating")
     this.eventBus.emit({
       sender: 'EditorToolbar',
       action: ActionEvent.EDITOR_GENERATE,

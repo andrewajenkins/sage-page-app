@@ -18,10 +18,13 @@
 }
 
 .line-container:hover {
-  background-color: #dcdcdc;
+  //background-color: #dcdcdc;
+  background-color: #707070; /* Highlight color for selected lines */
+
 }
 .line-container.selected:hover {
-  background-color: #c7c7c7; /* Light gray background on hover */
+  //background-color: #c7c7c7; /* Light gray background on hover */
+  background-color: #858585; /* Highlight color for selected lines */
 }
 
 .line-container:hover .menu-button {
@@ -34,7 +37,8 @@
 }
 
 .line-container.selected {
-  background-color: #e8e8e8; /* Highlight color for selected lines */
+  //background-color: #e8e8e8; /* Highlight color for selected lines */
+  background-color: #5a5a5a; /* Highlight color for selected lines */
 }
 
 /* Custom heading classes using PrimeFlex font size utilities */
