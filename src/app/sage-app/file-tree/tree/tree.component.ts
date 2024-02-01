@@ -37,6 +37,7 @@ export class TreeComponent {
             parent: this.lastEvent.node.parent,
             icon: 'pi pi-book',
             children: [],
+            expanded: true,
           } as TreeNode);
           this.lastEvent.node.expanded = true;
         }
@@ -50,6 +51,7 @@ export class TreeComponent {
             parent: this.lastEvent.node.parent,
             icon: 'pi pi-folder',
             children: [],
+            expanded: true,
           } as TreeNode);
           this.lastEvent.node.expanded = true;
         }
@@ -201,7 +203,159 @@ export class TreeComponent {
       label: 'Wikis',
       icon: 'pi pi-folder',
       expanded: true,
-      children: [],
+      children: [
+        {
+          key: this.getID(),
+          label: 'AI Innovations',
+          icon: 'pi pi-folder',
+          expanded: true,
+          children: [
+            {
+              key: this.getID(),
+              label: 'test',
+              icon: 'pi pi-book',
+              expanded: true,
+              children: [],
+            },
+          ],
+        },
+        {
+          key: this.getID(),
+          label: 'Future of Work',
+          icon: 'pi pi-folder',
+          expanded: true,
+          children: [
+            {
+              key: this.getID(),
+              label: 'test',
+              icon: 'pi pi-book',
+              expanded: true,
+              children: [],
+            },
+          ],
+        },
+        {
+          key: this.getID(),
+          label: 'Revolutionizing Knowledge Management with AI',
+          icon: 'pi pi-book',
+          expanded: true,
+          children: [
+            {
+              key: this.getID(),
+              label: 'Introduction',
+              parent: undefined,
+              icon: 'pi pi-align-justify',
+            },
+            {
+              key: this.getID(),
+              label: 'Historical Perspective',
+              parent: undefined,
+              icon: 'pi pi-align-justify',
+            },
+            {
+              key: this.getID(),
+              label: 'AI in Knowledge Management',
+              parent: undefined,
+              icon: 'pi pi-align-justify',
+              children: [
+                {
+                  key: this.getID(),
+                  label: 'Enhancing Information Retrieval with LLMs',
+                  parent: undefined,
+                  icon: 'pi pi-align-justify',
+                  children: [
+                    {
+                      key: this.getID(),
+                      label: 'Semantic Search Capabilities',
+                      parent: undefined,
+                      icon: 'pi pi-align-justify',
+                      children: [],
+                    },
+                    {
+                      key: this.getID(),
+                      label: 'Contextualized Answers',
+                      parent: undefined,
+                      icon: 'pi pi-align-justify',
+                      children: [],
+                    },
+                    {
+                      key: this.getID(),
+                      label: 'Dynamic Knowledge Bases',
+                      parent: undefined,
+                      icon: 'pi pi-align-justify',
+                      children: [],
+                    },
+                  ],
+                },
+                {
+                  key: this.getID(),
+                  label: 'Streamlining Content Creation and Curation',
+                  parent: undefined,
+                  icon: 'pi pi-align-justify',
+                  children: [
+                    {
+                      key: this.getID(),
+                      label: 'Automated Content Generation',
+                      parent: undefined,
+                      icon: 'pi pi-align-justify',
+                      children: [],
+                    },
+                    {
+                      key: this.getID(),
+                      label: 'Content Summarization',
+                      parent: undefined,
+                      icon: 'pi pi-align-justify',
+                      children: [],
+                    },
+                    {
+                      key: this.getID(),
+                      label: 'Quality and Consistency Checks',
+                      parent: undefined,
+                      icon: 'pi pi-align-justify',
+                      children: [],
+                    },
+                  ],
+                },
+                {
+                  key: this.getID(),
+                  label: 'Personalizing Knowledge Delivery',
+                  parent: undefined,
+                  icon: 'pi pi-align-justify',
+                  children: [
+                    {
+                      key: this.getID(),
+                      label: 'Adaptive Learning Paths',
+                      parent: undefined,
+                      icon: 'pi pi-align-justify',
+                      children: [],
+                    },
+                    {
+                      key: this.getID(),
+                      label: 'Interactive Learning Experiences',
+                      parent: undefined,
+                      icon: 'pi pi-align-justify',
+                      children: [],
+                    },
+                    {
+                      key: this.getID(),
+                      label: 'Predictive Knowledge Suggestions',
+                      parent: undefined,
+                      icon: 'pi pi-align-justify',
+                      children: [],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              key: this.getID(),
+              label: 'Case Studies',
+              parent: undefined,
+              icon: 'pi pi-align-justify',
+            },
+          ],
+        },
+      ],
     },
   ];
 

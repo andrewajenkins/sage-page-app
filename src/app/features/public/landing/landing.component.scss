@@ -60,3 +60,16 @@
 .surface-section {
   padding: 30px;
 }
+
+.image-container {
+  width: 100%; /* Adjust as needed */
+  height: 66%; /* Adjust to show top 2/3 of the image */
+  border-radius: 10px 10px 0 0; /* Rounds top corners */
+  overflow: hidden; /* Hides the part of the image that overflows the container */
+}
+
+.custom-image {
+  width: 66%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container */
+}
