@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sagepageapp-dev-205200-authRole",
+      "UnauthRoleArn": "arn:aws:iam::437884575683:role/amplify-sagepageapp-dev-205200-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::437884575683:role/amplify-sagepageapp-dev-205200-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-sagepageapp-dev-205200-deployment",
+      "UnauthRoleName": "amplify-sagepageapp-dev-205200-unauthRole",
+      "StackName": "amplify-sagepageapp-dev-205200",
+      "StackId": "arn:aws:cloudformation:us-east-1:437884575683:stack/amplify-sagepageapp-dev-205200/ce251820-c186-11ee-97e8-0e798d5724d7",
+      "AmplifyAppId": "d3po2r7fcgh74c"
+    }
+  }
+}

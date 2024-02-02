@@ -29,25 +29,22 @@ export class LandingComponent {
   constructor(private http: HttpClient) {}
 
   submitForm(email: string) {
-    const formData: any = new FormData();
-    console.log('email:', email);
-    formData.append('email', email);
-    alert(`Thanks! We'll keep you updated on progress!`);
+    // Construct the payload. Google Script expects 'application/x-www-form-urlencoded' content type for FormData.
+    const payload = new FormData();
+    payload.append('email', email);
 
-    this.http
-      .post(
-        'https://script.google.com/macros/s/AKfycbz1N0jAroWodCJLB_xurMsxXLpHPoVTppRIg0eXsnlHpvghi5_ahskLm5Zb5BFJBIr_/exec',
-        formData,
-      )
-      .subscribe(
-        (response) => {
-          // Optionally reset the email field after successful submission
-          this.email = '';
-        },
-        (error) => {
-          console.error('Error:', error);
-          alert('Submission failed. Please try again.');
-        },
-      );
+    // Google Script URL
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbz1N0jAroWodCJLB_xurMsxXLpHPoVTppRIg0eXsnlHpvghi5_ahskLm5Zb5BFJBIr_/exec';
+
+    // Send the request using HttpClient
+    this.http.post(scriptUrl, payload).subscribe(
+      (response) => {
+        this.email = ''; // Reset the email field after successful submission
+      },
+      (error) => {
+        console.error('Error:', error);
+        alert('Submission failed. Please try again.');
+      }
+    );
   }
 }
