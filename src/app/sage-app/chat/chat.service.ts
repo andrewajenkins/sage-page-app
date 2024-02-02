@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../environment/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +9,7 @@ export class ChatService {
   private apiUrl = 'https://api.openai.com/v1/chat/completions';
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + environment.secretKey, // Replace with your actual API key
+    Authorization: 'Bearer ' + process.env.OPENAI_SECRET_KEY, // Replace with your actual API key
   });
   constructor(private http: HttpClient) {}
 
