@@ -3,27 +3,34 @@
   style="
     background: radial-gradient(69.84% 69.84% at 50% 100%, rgba(21, 101, 192, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
     background-image: url(&quot;assets/images/logos/hero-bg-lg-03137f29be1d.webp&quot;);
+    background-position: center;
   ">
   <div class="surface-900 text-0 p-2 mx-auto mb-4" style="max-width: 250px; border-radius: 40px">
     🔥 Launching Q1, 2024
   </div>
   <div style="margin: 80px 0">
     <div class="text-8xl text-900 font-bold mb-1">Sage Page</div>
-    <div class="text-6xl text-primary font-bold mb-4">AI Powered Knowledge Management</div>
-    <button type="button" pButton pRipple label="Get Notified" class="p-button-outlined p-3 font-bold"></button>
+    <div class="text-6xl text-primary font-bold mb-4">AI-Powered Wiki Generation Platform</div>
+    <button
+      type="button"
+      pButton
+      pRipple
+      label="Get Notified"
+      class="p-button-outlined p-3 font-bold"
+      onclick="location.href='#cta'"></button>
   </div>
   <img src="assets/images/sage-page-1.png" alt="Image" class="" style="width: 75%; height: auto" />
 </div>
 
-<div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8" id="features">
   <div class="grid">
     <div class="col-12 md:col-6 flex align-items-center">
       <div>
-        <div class="text-blue-600 text-xl mb-3">ALL-IN-ONE</div>
+        <div class="text-blue-600 text-xl mb-3">Engage and Create</div>
         <div class="text-900 text-4xl font-bold mb-6">AI-Powered Dialogues</div>
         <p class="line-height-3 text-xl">
-          Elevate your content with our advanced editor. Edit, enhance, or restructure AI-generated drafts and original
-          compositions. Our tools make it simple to perfect and position each piece within your evolving knowledge base.
+          Transform your content creation process with our AI chat window. It facilitates dynamic interactions with AI,
+          helping you quickly craft and structure ideas into comprehensive outlines for your projects.
         </p>
       </div>
     </div>
@@ -40,11 +47,11 @@
     </div>
     <div class="col-12 md:col-6 flex align-items-center">
       <div>
-        <div class="text-4xl font-bold text-900 mb-3">Dynamic Content Tree</div>
+        <div class="text-blue-600 text-xl mb-3">Organize with Clarity</div>
+        <div class="text-900 text-4xl font-bold mb-6">Dynamic Content Tree</div>
         <p class="line-height-3 text-xl">
-          Unlock the power of AI to generate and refine your content. Interactive dialogues with LLMs offer tailored
-          outlines and articles, making knowledge creation effortless and intuitive. Transform your ideas into
-          structured knowledge seamlessly.
+          Visualize and manage your knowledge efficiently with our content tree. It transforms complex markdown
+          documents into an accessible hierarchy, allowing easy navigation and editing of deeply nested information.
         </p>
       </div>
     </div>
@@ -55,105 +62,47 @@
   <div class="grid">
     <div class="col-12 md:col-6 flex align-items-center">
       <div>
-        <div class="text-blue-600 text-xl mb-3">ALL-IN-ONE</div>
-        <div class="text-900 text-4xl font-bold mb-6">AI-Powered Dialogues</div>
+        <div class="text-blue-600 text-xl mb-3">Refine Your Insights</div>
+        <div class="text-4xl font-bold text-900 mb-3">Content Precision Editor</div>
         <p class="line-height-3 text-xl">
-        Visualize and manage your knowledge efficiently with our content tree. It transforms complex markdown documents
-        into an accessible hierarchy, allowing easy navigation and editing of deeply nested information.
+          Unlock the power of AI to generate and refine your content. Interactive dialogues with LLMs offer tailored
+          outlines and articles, making knowledge creation effortless and intuitive. Transform your ideas into
+          structured knowledge seamlessly.
         </p>
       </div>
     </div>
     <div class="col-12 md:col-6">
-      <img src="assets/images/chat-1.png" alt="Image" class="w-full" />
+      <img src="assets/images/editor-1.png" alt="Image" class="w-full" />
     </div>
   </div>
 </div>
 
 <div
+  id="cta"
   class="relative p-8 overflow-hidden bg-no-repeat bg-cover"
   style="background-image: url(&quot;assets/images/hero-2.jpg&quot;)">
   <div class="text-center my-6 relative">
     <div class="text-6xl font-bold mb-1 text-white">Sage Page</div>
     <div class="text-6xl text-blue-400 font-bold mb-4">Unleash, Knowledge.</div>
     <p class="mt-0 mb-3 line-height-3 text-center mx-auto text-blue-100" style="max-width: 500px">
-      Get early access to the future of AI knowledge management.<br>Sign up for exclusive launch updates and feature
-      insights.<br>Be the first to know!
+      Get early access to the future of AI knowledge management.<br />Sign up for exclusive launch updates and feature
+      insights.<br />Be the first to know!
     </p>
 
     <div class="flex align-items-center justify-content-center flex-wrap">
-      <input
-        type="text"
-        pInputText
-        class="bg-transparent border-white p-3 mr-3 mt-3"
-        style="border-radius: 40px"
-        size="30"
-        placeholder="Enter your email" />
-      <button type="button" label="Notify Me" pButton pRipple class="p-3 mt-3" style="border-radius: 40px"></button>
+      <form (ngSubmit)="submitForm(email)">
+        <input
+          type="email"
+          pInputText
+          class="bg-transparent border-white p-3 mr-3 mt-3"
+          style="border-radius: 40px"
+          size="30"
+          [(ngModel)]="email"
+          name="email"
+          required
+          placeholder="Enter your email" />
+        <button type="submit" label="Notify Me" pButton pRipple class="p-3 mt-3" style="border-radius: 40px"></button>
+      </form>
     </div>
   </div>
 </div>
-
-<!--<div class="landing-container">-->
-<!--  <div class="landing-banner">-->
-<!--    <div class="banner-image-title">-->
-<!--      <div class="banner-image">-->
-<!--        <img src="assets/images/logos/brain-blue-large.png" alt="Banner Image" />-->
-<!--      </div>-->
-<!--      <p class="banner-title">Sage Page</p>-->
-<!--    </div>-->
-<!--    <div class="banner-content">-->
-<!--      <p class="banner-description">Knowledge, Unleashed.</p>-->
-<!--      <button class="banner-button p-button p-button-raised p-button-primary">Learn More</button>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="flex surface-section">-->
-<!--    <div class="w-12 sm:w-6 px-4 py-8 md:px-6 lg:px-8">-->
-<!--      <div class="mt-6 mb-5 font-bold text-6xl text-900">Discover Knowledge. Unleash Potential.</div>-->
-<!--      <p class="text-700 text-3xl mt-0 mb-6">-->
-<!--        Sage Page revolutionizes information access. Dive into a streamlined, AI-enhanced world where knowledge is not-->
-<!--        just gathered, but intelligently organized for quick retrieval and easy understanding.-->
-<!--      </p>-->
-<!--    </div>-->
-<!--    <div-->
-<!--      class="w-6 hidden sm:block"-->
-<!--      style="-->
-<!--        background: url(&quot;assets/images/knowledge.png&quot;) no-repeat;-->
-<!--        background-size: contain;-->
-<!--        background-position: right;-->
-<!--        border-radius: 20px;-->
-<!--      "></div>-->
-<!--  </div>-->
-<!--  <div class="flex surface-section">-->
-<!--    <div-->
-<!--      class="w-6 hidden sm:block"-->
-<!--      style="-->
-<!--        background: url(&quot;assets/images/collaboration.png&quot;) no-repeat;-->
-<!--        background-size: contain;-->
-<!--        background-position: left;-->
-<!--      "></div>-->
-<!--    <div class="w-12 sm:w-6 px-4 py-8 md:px-6 lg:px-8">-->
-<!--      <div class="mt-6 mb-5 font-bold text-6xl text-900">Collaborate Effortlessly. Achieve More.</div>-->
-<!--      <p class="text-700 text-3xl mt-0 mb-6">-->
-<!--        Elevate teamwork with Sage Page. Our platform is a hub for collective intelligence, allowing seamless idea-->
-<!--        sharing and co-creation, fostering a dynamic and productive collaboration space.-->
-<!--      </p>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="flex surface-section">-->
-<!--    <div class="w-12 sm:w-6 px-4 py-8 md:px-6 lg:px-8">-->
-<!--      <div class="mt-6 mb-5 font-bold text-6xl text-900">Innovate Boldly. Lead Change.</div>-->
-<!--      <p class="text-700 text-3xl mt-0 mb-6">-->
-<!--        With Sage Page, embrace the future of wikis. Our AI-driven approach isn’t just about managing knowledge; it's-->
-<!--        about pioneering new ways to interact with and utilize information, setting new standards in the digital age.-->
-<!--      </p>-->
-<!--    </div>-->
-<!--    <div-->
-<!--      class="w-6 hidden sm:block"-->
-<!--      style="-->
-<!--        background: url(&quot;assets/images/innovation.png&quot;) no-repeat;-->
-<!--        background-size: contain;-->
-<!--        background-position: right;-->
-<!--        border-radius: 20px;-->
-<!--      "></div>-->
-<!--  </div>-->
-<!--</div>-->

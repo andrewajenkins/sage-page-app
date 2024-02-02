@@ -1,0 +1,6 @@
+.rounded-img {
+  border-radius: 20px; /* Adjust this value to control the roundness of the corners */
+  width: 75%; /* Size down to 75% of its container */
+  display: block; /* Ensures the image is block-level for margin auto to work */
+  margin: 0 auto; /* Centers the image */
+}

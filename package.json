@@ -6,6 +6,7 @@
     "start": "ng serve --open --poll=2000",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "prod": "ng build --prod",
     "test": "ng test",
     "serve:ssr:sage-page-app": "node dist/sage-page-app/server/server.mjs",
     "server": "nodemon dist/sage-page-app/server/server.mjs",

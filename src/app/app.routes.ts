@@ -9,6 +9,8 @@ import { SplitterComponent } from './sage-app/splitter/splitter.component';
 import { SettingsComponent } from './features/settings/settings.component';
 import { ProfileComponent } from './features/settings/profile/profile.component';
 import { AccountComponent } from './features/settings/account/account.component';
+import { BlogComponent } from './features/public/blog/blog.component';
+import { PrivacyComponent } from './features/public/privacy/privacy.component';
 
 export const routes: Routes = [
   {
@@ -17,7 +19,9 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: LandingComponent },
+      { path: 'blog', component: BlogComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'privacy', component: PrivacyComponent },
       { path: 'register', component: RegisterComponent },
     ],
   },
