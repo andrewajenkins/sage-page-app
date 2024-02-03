@@ -29,6 +29,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Build production
 
+- Fun ./tools/bin/docker-build.sh
+- build a new task definition revision
+- instantiate a new task
+- service update to latest, force deploy
+
 `ng build`   
 `npx http-server ./dist/sage-page-app/browser`    
 `aws codepipeline update-pipeline --cli-input-json file://full-pipeline.json`
