@@ -9,7 +9,7 @@ export class ChatService {
   private apiUrl = 'https://api.openai.com/v1/chat/completions';
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    Authorization: 'Bearer ' + process.env['OPENAI_SECRET_KEY'], // Replace with your actual API key
+    Authorization: 'Bearer ' + process.env.OPENAI_SECRET_KEY, // Replace with your actual API key
   });
   constructor(private http: HttpClient) {}
 
