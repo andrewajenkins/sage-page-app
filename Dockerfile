@@ -8,6 +8,7 @@ RUN npm install \
 #COPY tools/docker .
 RUN #npm run build
 COPY . .
+RUN ls -al
 
 # Stage 2: Serve the app with Node.js
 FROM node:20
