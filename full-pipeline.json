@@ -1,0 +1,101 @@
+{
+    "pipeline": {
+        "name": "sage-page-ecs-pipeline-1",
+        "roleArn": "arn:aws:iam::437884575683:role/service-role/AWSCodePipelineServiceRole-us-east-1-SagePagePiplineName",
+        "artifactStore": {
+            "type": "S3",
+            "location": "codepipeline-us-east-1-671728804298"
+        },
+        "stages": [
+            {
+                "name": "Source",
+                "actions": [
+                    {
+                        "name": "Source",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "AWS",
+                            "provider": "CodeStarSourceConnection",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "BranchName": "master",
+                            "ConnectionArn": "arn:aws:codestar-connections:us-east-1:437884575683:connection/f65870ee-af5f-4cd4-962a-87e66a1e565d",
+                            "DetectChanges": "true",
+                            "FullRepositoryId": "andrewajenkins/sage-page-app",
+                            "OutputArtifactFormat": "CODE_ZIP"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "inputArtifacts": [],
+                        "region": "us-east-1",
+                        "namespace": "SourceVariables"
+                    }
+                ]
+            },
+            {
+                "name": "Build",
+                "actions": [
+                    {
+                        "name": "Build",
+                        "actionTypeId": {
+                            "category": "Build",
+                            "owner": "AWS",
+                            "provider": "CodeBuild",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ProjectName": "SagePageAppBuildProject"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "BuildArtifact"
+                            }
+                        ],
+                        "inputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "region": "us-east-1",
+                        "namespace": "BuildVariables"
+                    }
+                ]
+            },
+            {
+              "name": "Deploy",
+              "actions": [
+                {
+                  "name": "Deploy",
+                  "actionTypeId": {
+                    "category": "Deploy",
+                    "owner": "AWS",
+                    "provider": "ECS",
+                    "version": "1"
+                  },
+                  "runOrder": 1,
+                  "configuration": {
+                    "ClusterName": "sage-page-ecs-name-2",
+                    "ServiceName": "sage-page-ecs-SERVICE"
+                  },
+                  "outputArtifacts": [],
+                  "inputArtifacts": [
+                    {
+                      "name": "SourceArtifact"
+                    }
+                  ],
+                  "region": "us-east-1",
+                  "namespace": "DeployVariables"
+                }
+            ]
+          }
+        ],
+        "version": 3,
+        "pipelineType": "V2"
+    }
+}
