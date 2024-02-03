@@ -14,6 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20 # You can specify your desired Node.js version here
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
       - name: Install Python
         run: |
           sudo apt-get update
@@ -39,6 +47,10 @@ jobs:
       - name: Docker login
         run: |
           echo ${{ steps.ecr-login.outputs.password }} | docker login --username AWS --password-stdin ${{ secrets.DOCKER_REGISTRY }}
+
+      - name: Build Angular app
+        run: |
+          ng build --prod
 
       - name: Build and push Docker image
         run: |
