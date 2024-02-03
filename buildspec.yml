@@ -21,6 +21,6 @@ phases:
       - echo Pushing Docker image to ECR...
       - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
       - docker push $REPOSITORY_URI:latest
-
-artifacts:
-  files: Dockerfile
+    artifacts:
+      files: Dockerfile
+      name: MyArtifactName
