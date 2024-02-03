@@ -42,3 +42,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 `cd ~/scripts/`
 `chmod +x install.sh`
 `./install.sh`
+`docker run -it 437884575683.dkr.ecr.us-east-1.amazonaws.com/sage-page-ecr-repo:latest /bin/bash`
+`./tools/bin/docker-build.sh`
+`docker rm angular-ssr-app`
+`docker run --name angular-ssr-app -p 80:80 437884575683.dkr.ecr.us-east-1.amazonaws.com/sage-page-ecr-repo:latest`

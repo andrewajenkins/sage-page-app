@@ -1,21 +1,17 @@
-# Stage 1: Build the Angular application
+# Build stage
 FROM node:20 as build
 WORKDIR /app
-COPY package*.json ./
-RUN npm install \
-    npm install -g @angular/cli \
-    npm run build
-#COPY tools/docker .
-#RUN #npm run build
-#COPY . .
-#RUN ls -al && pwd
-##
-### Stage 2: Serve the app with Node.js
-##FROM node:20
-##WORKDIR /app
-##COPY --from=build /app/dist ./dist
-##COPY --from=build /app/package*.json ./
-##RUN npm install --only=production
-EXPOSE 4000
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm install -g @angular/cli && npm run build
+
+# Production stage
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=build /app/dist ./dist
+COPY package.json package-lock.json ./
+RUN npm install --production
+
 EXPOSE 80
-#CMD ["npm", "run", "serve"]
+CMD ["npm", "run", "serve"]
