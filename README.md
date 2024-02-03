@@ -36,9 +36,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 `aws ecs register-task-definition --cli-input-json file://tools/task-definition.json`
 `aws ecs update-service --cluster <cluster-name>> --service <service-name> --task-definition <task-definition-name>`
 `chmod 400 your-key.pem`
-`ssh -i your-key.pem ec2-user@11.111.11.111`
 
-`scp -i ~/key.pem install.sh ec2-user@11.111.11.111:~/scripts/`
+`scp -i ~/sage-page-app-key-pair.pem tools/deploy.sh ec2-user@54.196.82.199:~/`
+`ssh -i ~/sage-page-app-key-pair.pem ec2-user@54.196.82.199`
 `cd ~/scripts/`
 `chmod +x install.sh`
 `./install.sh`

@@ -87,7 +87,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'] || 80;
 
   console.log('loading app');
   const server = app();
