@@ -1,0 +1,31 @@
+name: Deploy to AWS Elastic Beanstalk
+on:
+  push:
+    branches:
+      - main  # Set this to your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Python  # If your application is Python-based, for example
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'  # Adjust to your python version
+
+    - name: Install dependencies
+      run: |
+        pip install awsebcli
+        pip install --upgrade awscli
+
+    - name: Deploy to Elastic Beanstalk
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+      run: |
+        eb init -r $AWS_REGION -p "Node.js" SagePageElasticBeanstalkEnv
+        eb deploy SagePageElasticBeanstalkEnv-env
