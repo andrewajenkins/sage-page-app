@@ -40,31 +40,56 @@
             {
                 "name": "Build",
                 "actions": [
-                    {
-                        "name": "Build",
-                        "actionTypeId": {
-                            "category": "Build",
-                            "owner": "AWS",
-                            "provider": "CodeBuild",
-                            "version": "1"
-                        },
-                        "runOrder": 1,
-                        "configuration": {
-                            "ProjectName": "SagePageAppBuildProject"
-                        },
-                        "outputArtifacts": [
-                            {
-                                "name": "BuildArtifact"
-                            }
-                        ],
-                        "inputArtifacts": [
-                            {
-                                "name": "SourceArtifact"
-                            }
-                        ],
-                        "region": "us-east-1",
-                        "namespace": "BuildVariables"
-                    }
+                  {
+                      "name": "Build",
+                      "actionTypeId": {
+                          "category": "Build",
+                          "owner": "AWS",
+                          "provider": "CodeBuild",
+                          "version": "1"
+                      },
+                      "runOrder": 1,
+                      "configuration": {
+                          "ProjectName": "SagePageAppBuildProject"
+                      },
+                      "outputArtifacts": [
+                          {
+                              "name": "BuildArtifact"
+                          }
+                      ],
+                      "inputArtifacts": [
+                          {
+                              "name": "SourceArtifact"
+                          }
+                      ],
+                      "region": "us-east-1",
+                      "namespace": "BuildVariables"
+                  },
+                  {
+                      "name": "CreateImageDefinitions",
+                      "actionTypeId": {
+                          "category": "Build",
+                          "owner": "AWS",
+                          "provider": "CodeBuild",
+                          "version": "1"
+                      },
+                      "runOrder": 2,
+                      "configuration": {
+                          "ProjectName": "SagePageAppBuildProject"
+                      },
+                      "outputArtifacts": [
+                          {
+                              "name": "ImageDefinitionsArtifact"
+                          }
+                      ],
+                      "inputArtifacts": [
+                          {
+                              "name": "SourceArtifact"
+                          }
+                      ],
+                      "region": "us-east-1",
+                      "namespace": "BuildVariables2"
+                  }
                 ]
             },
             {

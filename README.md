@@ -33,3 +33,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 `npx http-server ./dist/sage-page-app/browser`    
 `aws codepipeline update-pipeline --cli-input-json file://full-pipeline.json`
 `aws codepipeline get-pipeline --name sage-page-ecs-pipeline-1 > full-pipeline.json`
+`aws ecs register-task-definition --cli-input-json file://tools/task-definition.json`
+`aws ecs update-service --cluster <cluster-name>> --service <service-name> --task-definition <task-definition-name>`
+`chmod 400 your-key.pem`
+`ssh -i your-key.pem ec2-user@11.111.11.111`
+
+`scp -i ~/key.pem install.sh ec2-user@11.111.11.111:~/scripts/`
+`cd ~/scripts/`
+`chmod +x install.sh`
+`./install.sh`

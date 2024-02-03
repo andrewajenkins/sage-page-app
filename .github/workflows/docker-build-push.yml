@@ -1,0 +1,32 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - master  # Change to the branch you want to trigger this workflow on
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest  # You can use other runners based on your preference
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      run: |
+        docker buildx create --use
+      if: success()
+
+    - name: Build and push Docker image
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_REGISTRY: 437884575683.dkr.ecr.us-east-1.amazonaws.com  # Replace with your Docker registry URL
+        IMAGE_NAME: sage-page-ecr-repo  # Replace with your Docker image name
+        TAG: latest  # You can use a specific tag or version here
+      run: |
+        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_REGISTRY
+        docker buildx build -t $DOCKER_REGISTRY/$IMAGE_NAME:$TAG -f your-dockerfile-directory .
+        docker push $DOCKER_REGISTRY/$IMAGE_NAME:$TAG
+      if: success()
