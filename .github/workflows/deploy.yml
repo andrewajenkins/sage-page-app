@@ -12,6 +12,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Setup Python  # If your application is Python-based, for example
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'  # Adjust to your python version
+
     - name: Install dependencies
       run: |
         pip install awsebcli
