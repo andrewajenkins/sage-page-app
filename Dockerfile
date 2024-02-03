@@ -3,7 +3,7 @@ FROM node:20 as build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-COPY . .
+COPY tools/docker .
 RUN npm run build
 
 # Stage 2: Serve the app with Node.js
