@@ -2,9 +2,11 @@
 FROM node:20 as build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install \
+    npm install -g @angular/cli \
+    npm run build
 #COPY tools/docker .
-RUN npm run build
+RUN #npm run build
 
 # Stage 2: Serve the app with Node.js
 FROM node:20
