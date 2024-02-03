@@ -31,3 +31,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 `ng build`   
 `npx http-server ./dist/sage-page-app/browser`    
+`aws codepipeline update-pipeline --cli-input-json file://full-pipeline.json`
+`aws codepipeline get-pipeline --name sage-page-ecs-pipeline-1 > full-pipeline.json`

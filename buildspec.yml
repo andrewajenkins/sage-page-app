@@ -21,3 +21,9 @@ phases:
       - echo Pushing Docker image to ECR...
       - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
       - docker push $REPOSITORY_URI:latest
+
+      # Create imagedefinitions.json file
+      - echo '[{"name":"my-container-1","imageUri":"'$REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION'"},{"name":"my-container-2","imageUri":"'$REPOSITORY_URI:latest'"}]' > imagedefinitions.json
+
+artifacts:
+  files: imagedefinitions.json
