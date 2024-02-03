@@ -8,13 +8,13 @@ RUN npm install \
 #COPY tools/docker .
 RUN #npm run build
 COPY . .
-RUN ls -al
-
-# Stage 2: Serve the app with Node.js
-FROM node:20
-WORKDIR /app
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/package*.json ./
-RUN npm install --only=production
+RUN ls -al && pwd
+#
+## Stage 2: Serve the app with Node.js
+#FROM node:20
+#WORKDIR /app
+#COPY --from=build /app/dist ./dist
+#COPY --from=build /app/package*.json ./
+#RUN npm install --only=production
 EXPOSE 4000
 CMD ["npm", "run", "serve"]
