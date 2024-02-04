@@ -7,6 +7,8 @@
     "esModuleInterop": true,
     "module": "ES2022"
   },
-  "files": ["src/main.ts", "src/main.server.ts", "server.ts"],
+  "files": ["src/main.ts", "src/main.server.ts",
+    "backend/server.ts"
+  ],
   "include": ["src/**/*.d.ts"]
 }
