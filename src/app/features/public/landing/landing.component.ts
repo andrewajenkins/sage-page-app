@@ -28,23 +28,14 @@ export class LandingComponent {
 
   constructor(private http: HttpClient) {}
 
-  submitForm(email: string) {
-    // Construct the payload. Google Script expects 'application/x-www-form-urlencoded' content type for FormData.
-    const payload = new FormData();
-    payload.append('email', email);
+  submitForm() {
+    alert("Thank you for your submission. We'll be in contact soon!");
 
-    // Google Script URL
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbz1N0jAroWodCJLB_xurMsxXLpHPoVTppRIg0eXsnlHpvghi5_ahskLm5Zb5BFJBIr_/exec';
-
-    // Send the request using HttpClient
-    this.http.post(scriptUrl, payload).subscribe(
-      (response) => {
-        this.email = ''; // Reset the email field after successful submission
-      },
-      (error) => {
-        console.error('Error:', error);
-        alert('Submission failed. Please try again.');
-      }
-    );
+    this.http.post('/api/submit-email', { email: this.email }).subscribe(
+        response => {
+          console.log('Success!', response)
+        },
+        error => console.error('Error!', error)
+    )
   }
 }

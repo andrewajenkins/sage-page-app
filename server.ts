@@ -33,6 +33,14 @@ export function app(): express.Express {
     password: 'asdf', // Note: In a real application, use hashed passwords
   };
 
+  server.post('/api/submit-email', async (req, res) => {
+    const { email } = req.body;
+    // Here, you'd connect to DocumentDB and insert the data.
+    console.log(email);
+    res.status(200).send('Email submitted successfully!');
+  });
+
+
   // Login Endpoint
   server.post('/login', (req, res) => {
     console.log('login!');
@@ -87,7 +95,7 @@ export function app(): express.Express {
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 80;
+  const port = process.env['PORT'] || 4000;
 
   console.log('loading app');
   const server = app();

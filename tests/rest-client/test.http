@@ -2,10 +2,19 @@
 
 ###
 # @name ping
-GET {{hostname}}/login
+POST {{hostname}}/api/login
 content-type: application/json
 
 {
     "email": "test",
     "password": "test-password"
+}
+
+###
+# @name email-submission
+POST {{hostname}}/api/submit-email
+content-type: application/json
+
+{
+    "email": "test-client-email"
 }

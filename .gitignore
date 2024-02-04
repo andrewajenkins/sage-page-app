@@ -49,3 +49,4 @@ src/environment/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+tools/bin/scratch.sh
