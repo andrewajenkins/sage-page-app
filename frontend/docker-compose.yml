@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  angular-ssr-app:
+    container_name: angular-ssr-app
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production

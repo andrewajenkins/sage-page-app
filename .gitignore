@@ -7,12 +7,13 @@
 /bazel-out
 
 # Node
-/node_modules
+frontend/node_modules
+backend/node_modules
 npm-debug.log
 yarn-error.log
 
 # IDEs and editors
-.idea/
+../.idea/
 .project
 .classpath
 .c9/
@@ -21,7 +22,8 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
+frontend/.vscode
+backend/.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -50,3 +52,6 @@ src/environment/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 tools/bin/scratch.sh
+/docs
+frontend/.angular/cache
+.idea

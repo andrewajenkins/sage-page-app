@@ -1,0 +1,67 @@
+@hostname = http://localhost:4200
+
+###
+# @name ping
+GET {{hostname}}/home
+content-type: application/json
+
+###
+# @name ping
+POST {{hostname}}/sage-page-app/login
+content-type: application/json
+
+{
+    "email": "test",
+    "password": "test-password"
+}
+
+###
+# @name email-submission
+GET {{hostname}}/api/test
+content-type: application/json
+
+{
+    "email": "test-client-email"
+}
+
+@hostname = http://localhost:4000
+
+###
+# @name ping
+POST {{hostname}}/sage-page-app/login
+content-type: application/json
+
+{
+    "email": "test",
+    "password": "test-password"
+}
+
+###
+# @name email-submission
+GET {{hostname}}/api/test
+content-type: application/json
+
+{
+    "email": "test-client-email"
+}
+
+@hostname = http://localhost:3000
+
+###
+# @name ping
+POST {{hostname}}/sage-page-app/login
+content-type: application/json
+
+{
+    "email": "test",
+    "password": "test-password"
+}
+
+###
+# @name email-submission
+GET {{hostname}}/api/test
+content-type: application/json
+
+{
+    "email": "test-client-email"
+}
