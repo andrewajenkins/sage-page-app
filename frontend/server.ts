@@ -4,9 +4,6 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
-import "reflect-metadata";
-import {AppDataSource} from "../backend/src/data-source";
-import {User} from "../backend/src/entity/User";
 
 
 // The Express app is exported so that it can be used by serverless Functions.
@@ -35,23 +32,6 @@ export function app(): express.Express {
 
   server.post('/api/submit-email', async (req, res) => {
     const { email } = req.body;
-    AppDataSource.initialize().then(async () => {
-
-        console.log("Inserting a new user into the database...")
-        const user = new User()
-        user.firstName = "Timber"
-        user.lastName = "Saw"
-        user.age = 25
-        await AppDataSource.manager.save(user)
-        console.log("Saved a new user with id: " + user.id)
-
-        console.log("Loading users from the database...")
-        const users = await AppDataSource.manager.find(User)
-        console.log("Loaded users: ", users)
-
-        console.log("Here you can setup and run express / fastify / any other framework.")
-
-    }).catch(error => console.log(error))
     console.log(email);
     res.status(200).send('Email submitted successfully!');
   });
