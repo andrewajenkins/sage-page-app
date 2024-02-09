@@ -2,8 +2,12 @@
 
 ###
 # @name ping
-GET {{hostname}}/home
+GET {{hostname}} HTTP/1.1
 content-type: application/json
+
+###
+
+curl http://localhost:4200
 
 ###
 # @name ping
@@ -24,26 +28,7 @@ content-type: application/json
     "email": "test-client-email"
 }
 
-@hostname = http://localhost:4000
 
-###
-# @name ping
-POST {{hostname}}/sage-page-app/login
-content-type: application/json
-
-{
-    "email": "test",
-    "password": "test-password"
-}
-
-###
-# @name email-submission
-GET {{hostname}}/api/test
-content-type: application/json
-
-{
-    "email": "test-client-email"
-}
 
 @hostname = http://localhost:3000
 
