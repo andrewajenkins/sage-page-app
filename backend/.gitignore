@@ -4,5 +4,5 @@ node_modules/
 build/
 tmp/
 temp/
-env.tx
+.env
 node_modules/

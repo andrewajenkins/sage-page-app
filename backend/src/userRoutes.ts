@@ -1,6 +1,6 @@
 // src/routes/userRoutes.ts
 import * as express from 'express';
-import { User } from 'models/User'; // Update the path as necessary
+import { User } from './models/User'; // Update the path as necessary
 
 const router = express.Router();
 

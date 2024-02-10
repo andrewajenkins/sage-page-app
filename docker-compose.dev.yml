@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    command: ['npm', 'start']
+    networks:
+      - default
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "4200:4200"
+    command: ['ng', 'serve', '--watch']
+    networks:
+      - default
+
+  mongo-dev:
+    image: mongo:latest
+    volumes:
+      - mongo-dev-data:/data/db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: devuser
+      MONGO_INITDB_ROOT_PASSWORD: devpass
+    networks:
+      - default
+
+volumes:
+  mongo-dev-data:
+
+networks:
+  default:

@@ -1,6 +1,0 @@
-version: '3'
-services:
-  web:
-    image: 437884575683.dkr.ecr.us-east-1.amazonaws.com/sage-page-ecr-repo:latest
-    ports:
-      - "80:80"

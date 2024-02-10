@@ -4,8 +4,6 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
-import { createProxyMiddleware } from 'http-proxy-middleware';
-
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -37,29 +35,6 @@ export function app(): express.Express {
     res.status(200).send('Email submitted successfully!');
   });
 
-
-  // Login Endpoint
-  server.post('/login', (req, res) => {
-    console.log('login!');
-    const { username, password } = req.body;
-
-    if (username === mockUser.username && password === mockUser.password) {
-      res.json({ success: true, message: 'Login successful' });
-    } else {
-      res.status(401).json({ success: false, message: 'Invalid credentials' });
-    }
-  });
-
-  server.post('register', (req, res) => {
-    console.log('register!');
-    const { username, password } = req.body;
-
-    if (username === mockUser.username && password === mockUser.password) {
-      res.json({ success: true, message: 'Registration successful' });
-    } else {
-      res.status(401).json({ success: false, message: 'Invalid credentials' });
-    }
-  });
   // Example Express Rest API endpoints
   server.get('/api/**', (req, res) => {
     console.log('here!');
@@ -98,14 +73,6 @@ function run(): void {
   console.log('loading app');
   const server = app();
   console.log('app loaded');
-
-  // Proxy endpoints to backend
-  server.use('/api', createProxyMiddleware({ target: 'http://localhost:3000', changeOrigin: true }));
-
-  // Proxy all other requests to the SSR server
-  server.use('/', createProxyMiddleware({ target: 'http://localhost:4000', changeOrigin: true }));
-
-
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });

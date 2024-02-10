@@ -3,7 +3,7 @@ FROM node:20 as build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
-COPY .. .
+COPY . .
 RUN npm install -g @angular/cli && npm run build
 
 # Production stage
@@ -13,5 +13,4 @@ COPY --from=build /app/dist ./dist
 COPY package.json package-lock.json ./
 RUN npm install --production
 
-EXPOSE 80
 CMD ["npm", "run", "serve"]
