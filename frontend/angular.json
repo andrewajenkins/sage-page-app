@@ -66,8 +66,7 @@
               "buildTarget": "sage-page-app:build:development"
             }
           },
-          "defaultConfiguration": "development",
-
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

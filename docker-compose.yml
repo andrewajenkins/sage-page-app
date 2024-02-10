@@ -5,22 +5,18 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     volumes:
-      - ./api:/app
+      - ./backend:/app
     environment:
       - NODE_ENV=development
-    networks:
-      - default
 
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
+      dockerfile: tools/Dockerfile
     volumes:
       - ./frontend:/app
     environment:
       - NODE_ENV=development
-    networks:
-      - default
 
   nginx:
     image: nginx:latest
@@ -31,8 +27,3 @@ services:
     depends_on:
       - backend
       - frontend
-    networks:
-      - default
-
-networks:
-  default:

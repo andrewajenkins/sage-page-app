@@ -12,13 +12,11 @@ services:
     ports:
       - "3000:3000"
     command: ['npm', 'start']
-    networks:
-      - default
 
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile.dev
+      dockerfile: tools/Dockerfile.dev
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -26,9 +24,7 @@ services:
       - NODE_ENV=development
     ports:
       - "4200:4200"
-    command: ['ng', 'serve', '--watch']
-    networks:
-      - default
+    command: ['ng', 'serve', '--host', '0.0.0.0', '--port', '4200', '--poll', '2000']
 
   mongo-dev:
     image: mongo:latest
@@ -39,11 +35,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: devuser
       MONGO_INITDB_ROOT_PASSWORD: devpass
-    networks:
-      - default
 
 volumes:
   mongo-dev-data:
-
-networks:
-  default:
