@@ -58,3 +58,4 @@ frontend/.angular/cache
 backend/env.ts
 frontend/src/environment/environment.ts
 frontend/dist/
+backend/global-bundle.pem

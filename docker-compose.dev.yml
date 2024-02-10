@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.0'
 services:
   backend:
     build:
@@ -16,7 +16,7 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: tools/Dockerfile.dev
+      dockerfile: Dockerfile.dev
     volumes:
       - ./frontend:/app
       - /app/node_modules

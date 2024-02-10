@@ -23,6 +23,6 @@
       "start-other": "node -r dotenv/config src/server.ts",
       "dev": "nodemon -r dotenv/config src/server.ts",
       "serve": "ts-node src/server.ts",
-      "build": "tsc"
+      "build": "tsc -p tsconfig.json"
    }
 }

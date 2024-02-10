@@ -29,7 +29,23 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Build production
 
-- Install docker-compose cli with `curl -L https://raw.githubusercontent.com/docker/compose-cli/main/scripts/install/install_linux.sh | sh`
+# Configure your AWS credentials
+ecs-cli configure profile --profile-name my-ecs-profile --access-key YOUR_ACCESS_KEY --secret-key YOUR_SECRET_KEY
+
+# Configure the ECS CLI with your cluster name, region, and output format
+ecs-cli configure --cluster my-cluster --default-launch-type FARGATE --config-name my-ecs-config --region us-east-1
+
+# Use your ecs cluster
+ecs-cli up --cluster-config my-ecs-config --ecs-profile my-ecs-profile
+
+# Deploy to cluster
+- new revision of task definition if required
+- update service with new task definition if required, then below
+aws ecs update-service --cluster sage-page-ecs-3 --service sage-page-app --force-new-deployment
+
+ecs-cli compose --project-name sage-page-app service up --create-log-groups --cluster-config my-ecs-config --ecs-profile my-ecs-profile
+
+[//]: # (ecs-cli compose --project-name sage-page-app service up --create-log-groups --force-deployment --cluster-config my-ecs-config --ecs-profile my-ecs-profile)
 
 [//]: # (- Fun ./tools/bin/docker-build.sh)
 

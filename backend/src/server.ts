@@ -4,7 +4,11 @@ import userRoutes from './userRoutes'; // Update the path as necessary
 import connectDB from './database';
 import * as dotenv from 'dotenv';
 
-dotenv.config();
+console.log("NODE_ENV:", process.env.NODE_ENV)
+// Only load dotenv if not in production
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
 
 const app = express();
 
