@@ -1,0 +1,28 @@
+version: 1
+task_definition:
+  ecs_network_mode: awsvpc
+  task_execution_role: ecsTaskExecutionRole
+  task_size:
+    cpu_limit: 256
+    mem_limit: 512
+  services:
+    backend:
+      essential: true
+    frontend:
+      essential: true
+    nginx:
+      essential: true
+
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - "subnet-8913efc5" # Replace with your subnet ID
+        - "subnet-9a39df9b" # Additional subnet ID if needed
+        - "subnet-f5fed293"
+        - "subnet-72f88843"
+        - "subnet-4fefc610"
+        - "subnet-e76a40c6"
+      security_groups:
+        - "sg-065d9c9f1baa2f99b" # Replace with your security group ID
+      assign_public_ip: ENABLED

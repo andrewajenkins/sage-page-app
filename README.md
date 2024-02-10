@@ -29,11 +29,17 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Build production
 
-- Fun ./tools/bin/docker-build.sh
-- build a new task definition revision - highlight previous and create new - json
-- instantiate a new task
-- service update to latest, force deploy
+- Install docker-compose cli with `curl -L https://raw.githubusercontent.com/docker/compose-cli/main/scripts/install/install_linux.sh | sh`
 
+[//]: # (- Fun ./tools/bin/docker-build.sh)
+
+[//]: # (- build a new task definition revision - highlight previous and create new - json)
+
+[//]: # (- instantiate a new task)
+
+[//]: # (- service update to latest, force deploy)
+
+`sudo docker context create ecs myecscontext`
 `ng build`   
 `npx http-server ./dist/sage-page-app/browser`    
 `aws codepipeline update-pipeline --cli-input-json file://full-pipeline.json`

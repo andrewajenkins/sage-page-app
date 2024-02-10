@@ -5,6 +5,16 @@ curl -X GET http://localhost:4200/
 ###
 curl -X GET http://localhost:3000/
 ###
+curl -X GET http://localhost/
+###
+curl -X GET http://localhost/api
+###
+curl -X POST http://localhost/api/newsletter/subscribe
+-H "Content-Type: application/json" \
+-d '{
+  "email": "my-email@email.com"
+}'
+###
 curl -X POST http://localhost:3000/api/register \
 -H "Content-Type: application/json" \
 -d '{
