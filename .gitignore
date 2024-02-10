@@ -57,3 +57,4 @@ frontend/.angular/cache
 .idea
 backend/env.ts
 frontend/src/environment/environment.ts
+frontend/dist/

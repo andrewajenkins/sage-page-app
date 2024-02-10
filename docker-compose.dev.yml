@@ -36,5 +36,9 @@ services:
       MONGO_INITDB_ROOT_USERNAME: devuser
       MONGO_INITDB_ROOT_PASSWORD: devpass
 
+  nginx:
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+
 volumes:
   mongo-dev-data:

@@ -10,12 +10,13 @@ COPY package*.json ./
 
 # Install dependencies
 # --production: Skip installing devDependencies
-RUN npm install --production
+RUN npm install
 
 # Copy the rest of the application code
 COPY . .
 
 # Your application's default port, adjust if different
+RUN npm run build
 
 # Command to run your app
-CMD ["ts-node", "src/server.ts"]
+CMD ["node", "-r", "dotenv/config", "build/src/server.js"]
