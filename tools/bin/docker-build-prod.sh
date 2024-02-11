@@ -14,7 +14,7 @@ docker tag frontend:latest 437884575683.dkr.ecr.us-east-1.amazonaws.com/frontend
 docker push 437884575683.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
 
 # For nginx
-docker pull nginx:latest
+#docker pull nginx:latest
 docker build --no-cache -t nginx ./tools/nginx
 docker tag nginx:latest 437884575683.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
 docker push 437884575683.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
