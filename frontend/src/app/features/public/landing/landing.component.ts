@@ -31,7 +31,7 @@ export class LandingComponent {
   submitForm() {
     alert("Thank you for your submission. We'll be in contact soon!");
 
-    this.http.post('/api/submit-email', { email: this.email }).subscribe(
+    this.http.post('/api/newsletter/subscribe', { email: this.email }).subscribe(
         response => {
           console.log('Success!', response)
         },

@@ -23,7 +23,9 @@ const connectDB = async () => {
         } else if (process.env.NODE_ENV == 'prod_dev') {
             console.log("prod local!");
             dotenv.config()
-            await mongoose.connect(process.env.DB_STRING_PROD_LOCAL, {user: process.env.DB_USER, pass: process.env.DB_PASSWORD});
+            await mongoose.connect(process.env.DB_STRING_PROD_LOCAL, {user: process.env.DB_USER, pass: process.env.DB_PASSWORD})
+                .then(() => console.log('Successfully connected to DB'))
+                .catch((err) => console.error('Could not connect to DB', err));
         }
         console.log('MongoDB connected');
     } catch (error) {
