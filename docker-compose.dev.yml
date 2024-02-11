@@ -37,8 +37,11 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: devpass
 
   nginx:
+    build:
+      context: ./tools/nginx
+      dockerfile: Dockerfile
     volumes:
-      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+      - ./tools/nginx/nginx.dev.conf:/etc/nginx/nginx.conf:ro
 
 volumes:
   mongo-dev-data:

@@ -2,24 +2,22 @@ version: '3.0'
 services:
   backend:
     image: 437884575683.dkr.ecr.us-east-1.amazonaws.com/backend:latest
-    volumes:
-      - ./backend:/app
+#    volumes:
+#      - ./backend:/app
     environment:
       - NODE_ENV=production
 
   frontend:
     image: 437884575683.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
-    volumes:
-      - ./frontend:/app
+#    volumes:
+#      - ./frontend:/app
     environment:
       - NODE_ENV=production
 
   nginx:
-    image: nginx:latest
+    image: 437884575683.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
     ports:
       - "80:80"
-    volumes:
-      - ./nginx.prod.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - backend
       - frontend
